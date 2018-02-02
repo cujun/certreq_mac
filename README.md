@@ -10,10 +10,6 @@ see blog post at :  https://twocanoes.com/origin-backstory-of-active-directory-c
 Using the **_tcscertrequest_** Command Line Tool
 ------------------------------------------------
 
-I was thinking about the DCE/RPC configuration profile  project recently,and wondered if macOS 10.13 could make the same API call to a Windows Server 2016 Certificate Authority.
-
-Using the same process I’d done back in 2011, I compiled the interface and created a new tool called _tcscertrequest_. I set up a Microsoft Certificate Authority and Active Directory. I did not enable the Web CA since it is not required for requesting certificates over DCE/RPC.
-
 To use the _tcscertrequest_ tool, a certificate signing request is needed, as well as the DNS name of the MS Certificate Authority, the name of the Certificate Authority, and the name of the template in the Microsoft Certificate Authority.
 
 A template is a collection of settings that tells the MS CA what information to include in the certificate and who is allowed to submit the request. The Microsoft CA has preconfigured templates, and the ones most commonly used are User and Computer.  The User template is commonly used for certificate-based authentication via Smart Cards and websites. The Computer template is commonly used for 802.1X certificate-based authentication and other services that the computer authenticates to.  Here is what the templates look like in the Microsoft Certificate Authority:
@@ -132,4 +128,4 @@ There are a bunch of improvements that could be done to the _tcscertrequest_ too
 4.  Associate the certificate with a WiFi config for 802.1x
 5.  Look up information in Active Directory (DNS name of CA, etc)
 
-Let me know if further development of this tool is of interest to you. Ping me on twitter @tperfitt, the macadmins slack @tperfitt, or send us an message via our contact form on Twocanoes.
+If you think you might be interested in using this tool, ping me on twitter tperfitt, the macadmins slack channel #twocanoes-certrequest, or send us an message via our contact form on Twocanoes.
