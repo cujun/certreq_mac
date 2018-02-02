@@ -1,0 +1,362 @@
+/*
+ * Copyright (c) 2009 Microsoft Corporation.
+ * Portions Copyright (c) 2009-2010 Apple Inc.
+ */
+
+/*
+ * Fundamental data type definitions from MS-DTYP.
+ */
+
+/* XXX eventually, this file should replace nttypes.h -- jpeach */
+
+[pointer_default(unique)]
+interface dtype {
+
+    cpp_quote("#if _DCE_IDL_")
+    typedef unsigned small uint8_t;
+    typedef small   int8_t;
+
+    typedef unsigned short uint16_t;
+    typedef short   int16_t;
+
+    typedef unsigned long uint32_t;
+    typedef long    int32_t;
+
+    typedef unsigned hyper uint64_t;
+    typedef hyper   int64_t;
+    cpp_quote("#else")
+    cpp_quote("#include <stdint.h>")
+    cpp_quote("#include <stddef.h>")
+    cpp_quote("#endif")
+
+    cpp_quote("#ifndef IDL_PROTOTYPES")
+    cpp_quote("#define IDL_PROTOTYPES")
+    cpp_quote("#endif")
+
+    cpp_quote("#ifndef RPC_C_NP_DIR")
+    cpp_quote("#define RPC_C_NP_DIR \"/var/rpc/ncacn_np\"")
+    cpp_quote("#endif")
+
+    typedef uint8_t __uint8;
+    typedef int8_t  __int8;
+    typedef uint16_t __uint16;
+    typedef int16_t __int16;
+    typedef uint32_t __uint32;
+    typedef int32_t __int32;
+    typedef uint64_t __uint64;
+    typedef int64_t __int64;
+
+    typedef uint8_t UINT8;
+    typedef int8_t  INT8;
+    typedef uint16_t UINT16;
+    typedef int16_t INT16;
+    typedef uint32_t UINT32;
+    typedef int32_t INT32;
+    typedef uint64_t UINT64;
+    typedef int64_t INT64;
+
+    /* utf16_t is a UTF16 encoded string. We use utf16_t * where
+     * Win32 uses LPWSTR.
+     */
+
+    cpp_quote("#if !defined(_utf16_t_DEFINED)")
+    cpp_quote("#define  _utf16_t_DEFINED")
+    typedef uint16_t utf16_t;
+    cpp_quote("#endif")
+
+    cpp_quote("#if !defined(_utf8_t_DEFINED)")
+    cpp_quote("#define _utf8_t_DEFINED")
+    typedef uint8_t utf8_t;
+    cpp_quote("#endif")
+
+    typedef uint32_t BOOL;
+    typedef BOOL *PBOOL;
+    typedef BOOL *LPBOOL;
+
+    typedef uint8_t BYTE;
+    typedef BYTE * PBYTE;
+    typedef BYTE * LPBYTE;
+
+    typedef BYTE  BOOLEAN;
+    typedef BOOLEAN * PBOOLEAN;
+    typedef BOOLEAN * LPBOOLEAN;
+
+    typedef utf16_t WCHAR;
+    typedef WCHAR * PWCHAR;
+    typedef WCHAR * LPWCHAR;
+
+    typedef char CHAR;
+    typedef CHAR * PCHAR;
+    typedef CHAR * LPCHAR;
+
+    /* You might expect UCHAR to be "unsigned char", but that gets compiled
+     * down into "idl_char". The signedness of idl_char depends on
+     * IDL_CHAR_IS_CHAR, so if we use that, then the signedness of UCHAR will
+     * not be fixed. So we use uint8_t.
+     */
+    typedef uint8_t UCHAR;
+    typedef UCHAR * PUCHAR;
+    typedef UCHAR * LUPCHAR;
+
+#if 0
+    /* Conflicts with the STRING typedef in the Netlogon protocol. */
+    typedef UCHAR * STRING;
+#else
+    typedef struct _STRING {
+        unsigned short Length;
+        unsigned short MaximumLength;
+        [size_is(MaximumLength), length_is(Length)]
+        char * Buffer;
+    } STRING,
+    *PSTRING;
+#endif
+
+    typedef int32_t INT;
+    typedef INT * PINT;
+    typedef INT * LPINT;
+
+    typedef long LONG;
+    typedef LONG * PLONG;
+    typedef LONG * LPLONG;
+
+    typedef uint32_t ULONG;
+    typedef LONG * PULONG;
+    typedef LONG * LUPLONG;
+
+    typedef uint32_t ULONG32;
+    typedef ULONG32 * PULONG32;
+    typedef ULONG32 * LPULONG32;
+
+    typedef uint32_t DWORD;
+    typedef DWORD * PDWORD;
+    typedef DWORD * LPDWORD;
+
+    typedef uint64_t ULONG64;
+    typedef ULONG64 * PULONG64;
+    typedef ULONG64 * LPULONG64;
+
+    typedef utf16_t UNICODE;
+    typedef UNICODE * PUNICODE;
+    typedef UNICODE * LPUNICODE;
+
+    typedef unsigned short USHORT;
+    typedef USHORT * PSHORT;
+    typedef USHORT * LPSHORT;
+
+    typedef unsigned short WORD;
+    typedef WORD * PWORD;
+    typedef WORD * LPWORD;
+
+    typedef void VOID;
+    typedef VOID * PVOID;
+
+    typedef uint32_t DWORD32;
+    typedef uint64_t DWORD64;
+
+    typedef uint64_t ULONGLONG;
+    typedef ULONGLONG DWORDLONG;
+    typedef DWORDLONG * PDWORDLONG;
+
+    typedef double  DOUBLE;
+    typedef float   FLOAT;
+    typedef short   SHORT;
+    typedef DWORD   HCALL;
+    typedef INT64   LONGLONG;
+    typedef LONG    HRESULT;
+
+#if NOTYET
+    typedef void *  HANDLE;
+#endif
+
+#ifndef _DCE_IDL_
+    /* __int3264 is a midl builtin.
+    /* See http://msdn.microsoft.com/en-us/library/aa367390.aspx */
+    typedef __int3264 LONG_PTR;
+    typedef unsigned __int3264 ULONG_PTR;
+#endif
+
+    typedef int32_t LONG32;
+    typedef int64_t LONG64;
+    typedef char * PSTR;
+    typedef char * LPSTR;
+    typedef utf16_t * PWSTR;
+    typedef utf16_t * LPWSTR;
+
+    cpp_quote("#if !defined(_NET_API_STATUS_DEFINED)")
+    cpp_quote("#define _NET_API_STATUS_DEFINED")
+    typedef DWORD NET_API_STATUS;
+    cpp_quote("#endif")
+
+    cpp_quote("#if !defined(_NTSTATUS_DEFINED)")
+    cpp_quote("#define _NTSTATUS_DEFINED")
+    typedef uint32_t NTSTATUS;
+    cpp_quote("#endif")
+
+    cpp_quote("#if !defined(_WERROR_DEFINED)")
+    cpp_quote("#define _WERROR_DEFINED")
+    typedef uint32_t WERROR;
+    cpp_quote("#endif")
+
+#ifndef _DCE_IDL_
+    typedef [context_handle] void *PCONTEXT_HANDLE;
+    typedef [ref] PCONTEXT_HANDLE *PPCONTEXT_HANDLE;
+    typedef [context_handle] * RPC_BINDING_HANDLE;
+#endif
+
+    typedef uint64_t QWORD;
+
+    typedef uint64_t TIME;
+
+#if HAVE__int3264
+    typedef ULONG_PTR DWORD_PTR;
+    typedef ULONG_PTR SIZE_T;
+#endif
+
+    /* MS-DTYP 2.3.1
+     *
+     * The FILETIME structure is a 64-bit value that represents the
+     * number of 100-nanosecond intervals that have elapsed since
+     * January 1, 1601, in Coordinated Universal Time (UTC) format.
+     */
+    typedef struct _FILETIME {
+        DWORD           dwLowDateTime;
+        DWORD           dwHighDateTime;
+    } FILETIME,
+    *PFILETIME,
+    *LPFILETIME;
+
+    typedef struct _GUID {
+        unsigned long   Data1;
+        unsigned short  Data2;
+        unsigned short  Data3;
+        byte            Data4[8];
+    } GUID,
+    UUID,
+    *PGUID,
+    *LPGUID;
+
+    typedef struct _LUID {
+        uint32_t LowPart;
+        uint32_t HighPart;
+    } LUID,
+    *PLUID;
+
+    typedef struct _LARGE_INTEGER {
+        uint64_t         QuadPart;
+    } LARGE_INTEGER,
+    *PLARGE_INTEGER,
+    *LPLARGE_INTEGER;
+
+    typedef struct _OLD_LARGE_INTEGER {
+        ULONG LowPart;
+        long HighPart;
+    } OLD_LARGE_INTEGER,
+    *POLD_LARGE_INTEGER;
+
+    typedef DWORD  LCID;
+
+    typedef struct _RPC_UNICODE_STRING {
+        unsigned short  Length;
+        unsigned short  MaximumLength;
+        [size_is(MaximumLength / 2), length_is(Length / 2)]
+        WCHAR *         Buffer;
+    } RPC_UNICODE_STRING,
+    *PRPC_UNICODE_STRING,
+    *LPRPC_UNICODE_STRING;
+
+    typedef RPC_UNICODE_STRING UNICODE_STRING,
+    *PUNICODE_STRING,
+    *LPUNICODE_STRING;
+
+    typedef struct _SYSTEMTIME {
+        WORD            wYear;
+        WORD            wMonth;
+        WORD            wDayOfWeek;
+        WORD            wDay;
+        WORD            wHour;
+        WORD            wMinute;
+        WORD            wSecond;
+        WORD            wMilliseconds;
+    } SYSTEMTIME,
+    *PSYSTEMTIME,
+    *LPSYSTEMTIME;
+
+    typedef struct _UINT128 {
+        UINT64          lower;
+        UINT64          upper;
+    } UINT128,
+    *PUINT128,
+    *LPUINT128;
+
+    typedef struct _ULARGE_INTEGER {
+        uint64_t QuadPart;
+    } ULARGE_INTEGER,
+    *PULARGE_INTEGER,
+    *LPULARGE_INTEGER;
+
+    typedef struct _RPC_SID_IDENTIFIER_AUTHORITY {
+        BYTE Value[6];
+    } RPC_SID_IDENTIFIER_AUTHORITY;
+
+    typedef DWORD SECURITY_INFORMATION;
+    typedef SECURITY_INFORMATION * PSECURITY_INFORMATION;
+    typedef SECURITY_INFORMATION * LPSECURITY_INFORMATION;
+
+    typedef DWORD ACCESS_MASK;
+    typedef ACCESS_MASK * PACCESS_MASK;
+    typedef ACCESS_MASK * LPACCESS_MASK;
+
+    typedef struct _RPC_SID {
+        uint8_t   Revision;
+        uint8_t   SubAuthorityCount;
+        RPC_SID_IDENTIFIER_AUTHORITY IdentifierAuthority;
+        [size_is(SubAuthorityCount)] unsigned long SubAuthority[];
+    } RPC_SID,
+    *PRPC_SID,
+    *LPRPC_SID;
+
+    /*
+     * MS-LSAD 2.2.7
+     *
+     * The SECURITY_IMPERSONATION_LEVEL enumeration defines a set of values
+     * that specifies security impersonation levels. These levels govern
+     * the degree to which a server process can act on behalf of a client
+     * process.
+     */
+    typedef enum _SECURITY_IMPERSONATION_LEVEL {
+        SecurityAnonymous = 0,
+        SecurityIdentification = 1,
+        SecurityImpersonation = 2,
+        SecurityDelegation = 3
+    } SECURITY_IMPERSONATION_LEVEL,
+    *PSECURITY_IMPERSONATION_LEVEL;
+
+    typedef enum _TOKEN_TYPE {
+        TokenPrimary        = 1,
+        TokenImpersonation  = 2
+    } TOKEN_TYPE,
+    *PTOKEN_TYPE;
+
+    typedef uint16_t SECURITY_DESCRIPTOR_CONTROL, *PSECURITY_DESCRIPTOR_CONTROL;
+
+    /*
+     * MS-SAMR 2.2.2.6 SID_NAME_USE
+     * MS-LSAT 2.2.13 SID_NAME_USE
+     */
+    typedef enum _SID_NAME_USE {
+        SidTypeUser = 1,
+        SidTypeGroup,
+        SidTypeDomain,
+        SidTypeAlias,
+        SidTypeWellKnownGroup,
+        SidTypeDeletedAccount,
+        SidTypeInvalid,
+        SidTypeUnknown,
+        SidTypeComputer,
+        SidTypeLabel
+    } SID_NAME_USE,
+    *PSID_NAME_USE;
+
+}
+
+/* vim: set ts=4 sw=4 tw=79 et cindent : */
