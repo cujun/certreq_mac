@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		76112C42136CAE50000018BA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76112C41136CAE50000018BA /* main.c */; };
+		76469CC420311FC6006CC471 /* TCSCertificateSigningRequest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76469CC320311FC6006CC471 /* TCSCertificateSigningRequest.c */; };
 		76D10D072023FA1C0060A993 /* ms-icp_cstub.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D042023FA100060A993 /* ms-icp_cstub.o */; };
 		76D10D62202400550060A993 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D61202400550060A993 /* CoreFoundation.framework */; };
 		76D10D64202400850060A993 /* DCERPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D63202400850060A993 /* DCERPC.framework */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		76112C3A136CAE50000018BA /* tcscertrequest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tcscertrequest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76112C41136CAE50000018BA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		76469CC220311FC6006CC471 /* TCSCertificateSigningRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSCertificateSigningRequest.h; sourceTree = "<group>"; };
+		76469CC320311FC6006CC471 /* TCSCertificateSigningRequest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TCSCertificateSigningRequest.c; sourceTree = "<group>"; };
 		76A8B5811384955600BAD515 /* ms-icp.idl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "ms-icp.idl"; path = "../dce/ms-icp.idl"; sourceTree = "<group>"; };
 		76D10D042023FA100060A993 /* ms-icp_cstub.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = "ms-icp_cstub.o"; path = "dce/ms-icp_cstub.o"; sourceTree = SOURCE_ROOT; };
 		76D10D0B2023FABE0060A993 /* ms-icp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ms-icp.h"; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 		76112C40136CAE50000018BA /* TCSCertRequest */ = {
 			isa = PBXGroup;
 			children = (
+				76469CC320311FC6006CC471 /* TCSCertificateSigningRequest.c */,
+				76469CC220311FC6006CC471 /* TCSCertificateSigningRequest.h */,
 				76D10D0A2023FABE0060A993 /* headers */,
 				76112C41136CAE50000018BA /* main.c */,
 				76112C43136CAE50000018BA /* Supporting Files */,
@@ -345,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76469CC420311FC6006CC471 /* TCSCertificateSigningRequest.c in Sources */,
 				76112C42136CAE50000018BA /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

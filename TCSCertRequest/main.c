@@ -7,6 +7,7 @@
 #include "dce/dcethread.h"
 #import "ms-icp.h"
 #import <CoreFoundation/CoreFoundation.h>
+#include "TCSCertificateSigningRequest.h"
 
 #define CR_DISP_ISSUED 0x00000003
 #define CR_DISP_UNDER_SUBMISSION 0x00000005
@@ -27,6 +28,9 @@ int main (int argc, char * argv[])
     char *cert_template=NULL;
     int ch;
     
+    long long size;
+    char *csr=NULL;
+    int res=generate_csr(&csr, &size,"TestCertRequest", algorithm_type_RSA, key_size_2048, key_usage_signing_encrypting, algorithm_sha1, "123", "timo", "US", "twocanoes", "", "IL", "tperfitt@twocanoes.com");
 
     if (argc<10) {
         usage();
