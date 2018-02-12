@@ -62,6 +62,12 @@
             ReferencedContainer = "container:TCSCertRequest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-n macpower.twocanoes.com -g tperfitt -s win-fgivt3j3gi9.twocanoes.com -c tcsca -w /tmp/ad.cer -t Machine"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

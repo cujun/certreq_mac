@@ -55,5 +55,5 @@ enum algorithm{
     algorithm_sha512
 };
 
-int generate_csr(char **csr,long long *csr_size,char * in_label,algorithm_type in_algorithm_type, key_size in_key_size,key_usage in_key_usage,algorithm in_algorithm,char * in_challenge_string,char *in_common_name, char * in_country, char * in_organization, char *in_organization_unit, char *in_state,char *in_email);
+int generate_csr( char *csr,unsigned int *csr_size,char * in_label,algorithm_type in_algorithm_type, key_size in_key_size,key_usage in_key_usage,algorithm in_algorithm,char * in_challenge_string,char *in_common_name, char * in_country, char * in_organization, char *in_organization_unit, char *in_state,char *in_email);
 #endif /* TCSCertificateSigningRequest_h */

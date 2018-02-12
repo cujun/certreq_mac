@@ -19,24 +19,23 @@ void c_to_utf16(char *in,char *out,int *outlength) ;
 int main (int argc, char * argv[])
 {
    
-    unsigned char cert[2048];
+     char cert[2048];
     unsigned int bytes_read;
     char *servername=NULL;
     char *csr_path=NULL;
     char *ca_name=NULL;
     char *out_file_path=NULL;
     char *cert_template=NULL;
+    char *cert_label=NULL;
+    char *cert_cn=NULL;
     int ch;
     
-    long long size;
-    char *csr=NULL;
-    int res=generate_csr(&csr, &size,"TestCertRequest", algorithm_type_RSA, key_size_2048, key_usage_signing_encrypting, algorithm_sha1, "123", "timo", "US", "twocanoes", "", "IL", "tperfitt@twocanoes.com");
 
-    if (argc<10) {
-        usage();
-        return -1;
-    }
-    while ((ch = getopt(argc, argv, "r:s:c:w:t:")) != -1) {
+//    if (argc<10) {
+//        usage();
+//        return -1;
+//    }
+    while ((ch = getopt(argc, argv, "g:n:r:s:c:w:t:")) != -1) {
         switch (ch) {
             case 'r':
                 csr_path=optarg;
@@ -53,7 +52,13 @@ int main (int argc, char * argv[])
             case 't':
                 cert_template=optarg;
                 break;
-                
+            case 'g':
+                cert_cn=optarg;
+                break;
+            case 'n':
+                cert_label=optarg;
+                break;
+
             case '?':
             default:
                 usage();
@@ -63,21 +68,38 @@ int main (int argc, char * argv[])
     }
     argc -= optind;
     argv += optind;    
-
-    if (csr_path==NULL || servername==NULL || ca_name==NULL|| out_file_path==NULL||cert_template==NULL ) {
+    if (((csr_path==NULL)&&(cert_cn==NULL)) || servername==NULL || ca_name==NULL|| out_file_path==NULL||cert_template==NULL ) {
         usage();
         return -1;
     }
-    FILE * cert_file=fopen(csr_path,"r");
     
-    if (cert_file==NULL){
-        printf("Could not open file %s\n",csr_path);
-        return -1;
-    }
+    
 
-    bytes_read=(unsigned int)fread(cert, 1, 2048,cert_file);
+    if (cert_cn) {
+        if (!cert_label) {
+            fprintf(stderr, "Please provide a label\n");
+            return -1;
+        }
+        int res=generate_csr(cert, &bytes_read,cert_label, algorithm_type_RSA, key_size_2048, key_usage_signing_encrypting, algorithm_sha1, cert_label, cert_cn, "", "", "", "", "");
+        
+        if (res) {
+            fprintf(stderr,"Error generating certificate");
+            return -1;
+        }
+    }
     
-    fclose(cert_file);
+    else {
+        FILE * cert_file=fopen(csr_path,"r");
+        
+        if (cert_file==NULL){
+            printf("Could not open file %s\n",csr_path);
+            return -1;
+        }
+
+        bytes_read=(unsigned int)fread(cert, 1, 2048,cert_file);
+        
+        fclose(cert_file);
+    }
     
     CERTTRANSBLOB pctbCert;
     CERTTRANSBLOB pctbEncodedCert;
@@ -138,7 +160,7 @@ int main (int argc, char * argv[])
     c_to_utf16(ca_name,(char *)pwszAuthority,&outlength);
    
     
-    pctbRequest.pb=cert;
+    pctbRequest.pb=(unsigned char *)cert;
     pctbRequest.cb=bytes_read;
     
     int attribute_string_len;
@@ -163,9 +185,9 @@ int main (int argc, char * argv[])
             printf("ERROR: CertServerRequest %i\n",outstatus);
             return -1;
         }
-        if (pdwDisposition==CR_DISP_ISSUED) printf("Certificate issued.\n");
+        if (pdwDisposition==CR_DISP_ISSUED) fprintf(stderr,"Certificate issued.\n");
         else if (pdwDisposition==CR_DISP_UNDER_SUBMISSION) printf("Certificate submitted\n");
-        else  printf("Certificate request error\n");
+        else  fprintf(stderr,"Certificate request error\n");
 
     }
     DCETHREAD_CATCH_ALL(thread_exc){
@@ -181,7 +203,7 @@ int main (int argc, char * argv[])
         FILE *outfile=fopen(out_file_path,"w");
 
         if (pctbEncodedCert.cb==0) {
-            printf("Failed.  Check Failed Requests with request ID %i in the CA for the reason why\n",pdwRequestId);
+            fprintf(stderr,"Failed.  Check Failed Requests with request ID %i in the CA for the reason why\n",pdwRequestId);
 
 
         }
@@ -192,7 +214,7 @@ int main (int argc, char * argv[])
         }
         fclose (outfile);
 
-        printf("Certificate saved to %s. \n",out_file_path);
+        fprintf(stderr,"Certificate saved to %s. \n",out_file_path);
 
     }
     else {
@@ -239,11 +261,15 @@ void usage(void) {
     printf("\ntcscertrequest is a command line tool to send a certificate request via RPCs to a Microsoft certificate authority.\n\n");
     printf("Options:\n");
     printf("    -r <csr path>           Path to certificate signing request in binary (DER) format. Can use \"openssl req -nodes -newkey rsa:2048 -keyout domain.key -out domain.csr -subj '/CN=computername' -outform der\" command to generate.\n");
+    printf("    -g   <Common Name>      Generate CSR with Common Name. Certificate will be generated with RSA 2048 bits SHA512 \n");
+    printf("    -n   <label>      Label in keychain for imported identity\n");
+
     printf("    -s <server path>        CA Server DNS name.\n");
     printf("    -c <name of ca>         Name of the certificate authority.  This is not the server name but the name used in the Common Name of the issuing authority.\n");
     printf("    -w <output file path>   Signed certificate will be written to <output file path> in DER format.\n");
     printf("    -t <template name>      Name of the template to use when signing the certificate. Common template names include User or Machine.\n");
 
+    //    int res=generate_csr(&csr, &size,"TestCertRequest", algorithm_type_RSA, key_size_2048, key_usage_signing_encrypting, algorithm_sha5, "123", "timo", "US", "twocanoes", "", "IL", "tperfitt@twocanoes.com");
 
 }
 

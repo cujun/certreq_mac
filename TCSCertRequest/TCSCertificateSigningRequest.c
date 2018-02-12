@@ -9,7 +9,7 @@
 #include "TCSCertificateSigningRequest.h"
 
 
-int generate_csr(char **csr,long long *csr_size,char * in_label,algorithm_type in_algorithm_type, key_size in_key_size,key_usage in_key_usage,algorithm in_algorithm,char * in_challenge_string,char *in_common_name, char * in_country, char * in_organization, char *in_organization_unit, char *in_state,char *in_email){
+int generate_csr(char *csr,unsigned int *csr_size,char * in_label,algorithm_type in_algorithm_type, key_size in_key_size,key_usage in_key_usage,algorithm in_algorithm,char * in_challenge_string,char *in_common_name, char * in_country, char * in_organization, char *in_organization_unit, char *in_state,char *in_email){
     
     
     char label[255];
@@ -195,21 +195,21 @@ int generate_csr(char **csr,long long *csr_size,char * in_label,algorithm_type i
         return -1;
     }
     
-    char *buffer = calloc(1, size);
+//    char *buffer = calloc(1, size);
     size_t bytesRead = 0;
     FILE *file=fopen(temp_file, "r");
     
     if (file != NULL)
     {
         // read up to sizeof(buffer) bytes
-        while ((bytesRead = fread(buffer, 1, size, file)) > 0)
+        while ((bytesRead = fread(csr, 1, size, file)) > 0)
         {
         }
     }
     
     
-    *csr=buffer;
-    *csr_size=size;
+    
+    *csr_size=(unsigned int)size;
     
     return 0;
 }
