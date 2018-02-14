@@ -31,6 +31,7 @@ int main (int argc, char * argv[])
     char *cert_label=NULL;
     char *cert_cn=NULL;
     char *keychain_path=NULL;
+    bool verbose=false;
     int ch;
     
 
@@ -38,7 +39,7 @@ int main (int argc, char * argv[])
 //        usage();
 //        return -1;
 //    }
-    while ((ch = getopt(argc, argv, "k:g:n:r:s:c:w:t:")) != -1) {
+    while ((ch = getopt(argc, argv, "k:g:n:r:s:c:w:t:v")) != -1) {
         switch (ch) {
             case 'r':
                 csr_path=optarg;
@@ -60,6 +61,9 @@ int main (int argc, char * argv[])
                 break;
             case 'n':
                 cert_label=optarg;
+                break;
+            case 'v':
+                verbose=true;
                 break;
 
             case '?':
@@ -83,15 +87,18 @@ int main (int argc, char * argv[])
             fprintf(stderr, "Please provide a label\n");
             return -1;
         }
+        if (verbose) fprintf(stderr,"Generating CSR\n");
         int res=generate_csr(cert, &bytes_read,cert_label, keychain_path,algorithm_type_RSA, key_size_2048, key_usage_signing_encrypting, algorithm_sha1, cert_label, cert_cn, "", "", "", "", "");
         
         if (res) {
-            fprintf(stderr,"Error generating certificate");
+            fprintf(stderr,"Error generating certificate\n");
             return -1;
         }
     }
     
     else {
+        if (verbose) fprintf(stderr,"Loading CSR from %s\n",csr_path);
+
         FILE * cert_file=fopen(csr_path,"r");
         
         if (cert_file==NULL){
@@ -125,7 +132,8 @@ int main (int argc, char * argv[])
     sprintf(partial_string_binding, "%s:%s[]",
             protocol_family,
             servername);
-    
+    if (verbose) fprintf(stderr,"rpc_binding_from_string_binding\n");
+
     rpc_binding_from_string_binding((unsigned char *)partial_string_binding,
                                     &binding_handle,
                                     &status);
@@ -137,12 +145,14 @@ int main (int argc, char * argv[])
     }
     unsigned_char_t *server_princ_name=malloc(1024);
     snprintf((char *)server_princ_name,1024,"host/%s",servername);
-    
+    if (verbose) fprintf(stderr,"rpc_ep_resolve_binding\n");
+
     rpc_ep_resolve_binding(binding_handle,
                            ICertPassage_v0_0_c_ifspec,
                            &status);
     
-    
+    if (verbose) fprintf(stderr,"rpc_binding_set_auth_info");
+
     rpc_binding_set_auth_info(binding_handle,
                               (unsigned_char_p_t)server_princ_name,
                               authn_level,
@@ -178,7 +188,8 @@ int main (int argc, char * argv[])
 
     pctbAttribs.cb=attribute_string_len+2;
 
-    
+    if (verbose) fprintf(stderr,"requesting certificate\n");
+
   
     DCETHREAD_TRY {
         DWORD outstatus=CertServerRequest(binding_handle,dwFlags,(unsigned short *)pwszAuthority,&pdwRequestId,&pdwDisposition,&pctbAttribs,&pctbRequest,&pctbCert,&pctbEncodedCert,&pctbDispositionMessage);
@@ -200,6 +211,8 @@ int main (int argc, char * argv[])
     }
     DCETHREAD_ENDTRY
 
+    if (verbose) fprintf(stderr,"freeing principal name\n");
+
     free (server_princ_name);
         
     if (pdwRequestId>0) {
@@ -216,6 +229,8 @@ int main (int argc, char * argv[])
         SecCertificateRef cert;
         CFDataRef cert_data=CFDataCreate(NULL, pctbEncodedCert.pb, pctbEncodedCert.cb);
         
+        if (verbose) fprintf(stderr,"Creating certificate reference\n");
+
         cert = SecCertificateCreateWithData(NULL, (CFDataRef) cert_data);
         SecKeychainRef keychain_ref;
         
@@ -227,6 +242,8 @@ int main (int argc, char * argv[])
             keychain_path=malloc(PATH_MAX);
             sprintf(keychain_path,"%s/Library/Keychains/login.keychain",pw->pw_dir);
         }
+        if (verbose) fprintf(stderr,"Opening keychain %s\n",keychain_path);
+
         SecKeychainOpen(keychain_path, &keychain_ref);
 
         
