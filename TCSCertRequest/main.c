@@ -7,6 +7,11 @@
 #include "dce/dcethread.h"
 #import "ms-icp.h"
 #import <CoreFoundation/CoreFoundation.h>
+#include "TCSCertificateSigningRequest.h"
+#include <CoreFoundation/CoreFoundation.h>
+#include <Security/Security.h>
+#include <CoreServices/CoreServices.h>
+#include <pwd.h>
 
 #define CR_DISP_ISSUED 0x00000003
 #define CR_DISP_UNDER_SUBMISSION 0x00000005
@@ -17,25 +22,29 @@ void c_to_utf16(char *in,char *out,int *outlength) ;
 
 int main (int argc, char * argv[])
 {
-   
-    unsigned char cert[2048];
+    char cert[2048];
     unsigned int bytes_read;
     char *servername=NULL;
     char *csr_path=NULL;
     char *ca_name=NULL;
-    char *out_file_path=NULL;
     char *cert_template=NULL;
+    char *cert_label=NULL;
+    char *cert_cn=NULL;
+    char *keychain_path=NULL;
     int ch;
     
 
-    if (argc<10) {
-        usage();
-        return -1;
-    }
-    while ((ch = getopt(argc, argv, "r:s:c:w:t:")) != -1) {
+//    if (argc<10) {
+//        usage();
+//        return -1;
+//    }
+    while ((ch = getopt(argc, argv, "k:g:n:r:s:c:w:t:")) != -1) {
         switch (ch) {
             case 'r':
                 csr_path=optarg;
+                break;
+            case 'k':
+                keychain_path=optarg;
                 break;
             case 's':
                 servername=optarg;
@@ -43,13 +52,16 @@ int main (int argc, char * argv[])
             case 'c':
                 ca_name=optarg;
                 break;
-            case 'w':
-                out_file_path=optarg;
-                break;
             case 't':
                 cert_template=optarg;
                 break;
-                
+            case 'g':
+                cert_cn=optarg;
+                break;
+            case 'n':
+                cert_label=optarg;
+                break;
+
             case '?':
             default:
                 usage();
@@ -59,21 +71,38 @@ int main (int argc, char * argv[])
     }
     argc -= optind;
     argv += optind;    
-
-    if (csr_path==NULL || servername==NULL || ca_name==NULL|| out_file_path==NULL||cert_template==NULL ) {
+    if (((csr_path==NULL)&&(cert_cn==NULL)) || servername==NULL || ca_name==NULL||cert_template==NULL ) {
         usage();
         return -1;
     }
-    FILE * cert_file=fopen(csr_path,"r");
     
-    if (cert_file==NULL){
-        printf("Could not open file %s\n",csr_path);
-        return -1;
-    }
+   
 
-    bytes_read=(unsigned int)fread(cert, 1, 2048,cert_file);
+    if (cert_cn) {
+        if (!cert_label) {
+            fprintf(stderr, "Please provide a label\n");
+            return -1;
+        }
+        int res=generate_csr(cert, &bytes_read,cert_label, keychain_path,algorithm_type_RSA, key_size_2048, key_usage_signing_encrypting, algorithm_sha1, cert_label, cert_cn, "", "", "", "", "");
+        
+        if (res) {
+            fprintf(stderr,"Error generating certificate");
+            return -1;
+        }
+    }
     
-    fclose(cert_file);
+    else {
+        FILE * cert_file=fopen(csr_path,"r");
+        
+        if (cert_file==NULL){
+            printf("Could not open file %s\n",csr_path);
+            return -1;
+        }
+
+        bytes_read=(unsigned int)fread(cert, 1, 2048,cert_file);
+        
+        fclose(cert_file);
+    }
     
     CERTTRANSBLOB pctbCert;
     CERTTRANSBLOB pctbEncodedCert;
@@ -134,7 +163,7 @@ int main (int argc, char * argv[])
     c_to_utf16(ca_name,(char *)pwszAuthority,&outlength);
    
     
-    pctbRequest.pb=cert;
+    pctbRequest.pb=(unsigned char *)cert;
     pctbRequest.cb=bytes_read;
     
     int attribute_string_len;
@@ -159,9 +188,9 @@ int main (int argc, char * argv[])
             printf("ERROR: CertServerRequest %i\n",outstatus);
             return -1;
         }
-        if (pdwDisposition==CR_DISP_ISSUED) printf("Certificate issued.\n");
+        if (pdwDisposition==CR_DISP_ISSUED) fprintf(stderr,"Certificate issued.\n");
         else if (pdwDisposition==CR_DISP_UNDER_SUBMISSION) printf("Certificate submitted\n");
-        else  printf("Certificate request error\n");
+        else  fprintf(stderr,"Certificate request error\n");
 
     }
     DCETHREAD_CATCH_ALL(thread_exc){
@@ -174,21 +203,54 @@ int main (int argc, char * argv[])
     free (server_princ_name);
         
     if (pdwRequestId>0) {
-        FILE *outfile=fopen(out_file_path,"w");
+//        FILE *outfile=fopen(out_file_path,"w");
 
         if (pctbEncodedCert.cb==0) {
-            printf("Failed.  Check Failed Requests with request ID %i in the CA for the reason why\n",pdwRequestId);
+            fprintf(stderr,"Failed.  Check Failed Requests with request ID %i in the CA for the reason why\n",pdwRequestId);
 
 
         }
-        int i;
+        CFStringRef keys[3];
+        CFStringRef values[3];
+        CFDictionaryRef aDict;
+        SecCertificateRef cert;
+        CFDataRef cert_data=CFDataCreate(NULL, pctbEncodedCert.pb, pctbEncodedCert.cb);
+        
+        cert = SecCertificateCreateWithData(NULL, (CFDataRef) cert_data);
+        SecKeychainRef keychain_ref;
+        
+        
+        if (!keychain_path) {
+            struct passwd *pw = getpwuid(getuid());
+            assert(pw);
 
-        for (i=0;i<pctbEncodedCert.cb;i++){
-            fputc(pctbEncodedCert.pb[i], outfile);
+            keychain_path=malloc(PATH_MAX);
+            sprintf(keychain_path,"%s/Library/Keychains/login.keychain",pw->pw_dir);
         }
-        fclose (outfile);
+        SecKeychainOpen(keychain_path, &keychain_ref);
 
-        printf("Certificate saved to %s. \n",out_file_path);
+        
+        keys[0] = kSecValueRef;
+        keys[1] = kSecClass;
+        keys[2]=kSecUseKeychain;
+        values[0] = (CFStringRef) cert;
+        values[1] = kSecClassCertificate;
+        values[2]=(CFStringRef)keychain_ref;
+
+        aDict=CFDictionaryCreate(NULL, (const void **)keys, (const void **)values, 3, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+        OSStatus status =SecItemAdd(aDict,NULL );
+        if (status != errSecSuccess) {
+            // Handle the error
+        }
+
+//        int i;
+//
+//        for (i=0;i<pctbEncodedCert.cb;i++){
+//            fputc(pctbEncodedCert.pb[i], outfile);
+//        }
+//        fclose (outfile);
+
+        fprintf(stderr,"Certificate saved to keychain\n");
 
     }
     else {
@@ -231,15 +293,17 @@ void c_to_utf16(char *in,char *out,int *outlength) {
 }
 
 void usage(void) {
-    printf("tcscertrequest -r <csr path> -s <server dns name> -c <name of ca> -w <output file path> -t <template name>\n");
+    printf("tcscertrequest -r <csr path> -s <server dns name> -c <name of ca> [-k <path_to_keychain>] -t <template name>\n");
     printf("\ntcscertrequest is a command line tool to send a certificate request via RPCs to a Microsoft certificate authority.\n\n");
     printf("Options:\n");
     printf("    -r <csr path>           Path to certificate signing request in binary (DER) format. Can use \"openssl req -nodes -newkey rsa:2048 -keyout domain.key -out domain.csr -subj '/CN=computername' -outform der\" command to generate.\n");
+    printf("    -g   <Common Name>      Generate CSR with Common Name. Certificate will be generated with RSA 2048 bits SHA512 \n");
+    printf("    -n   <label>      Label in keychain for imported identity\n");
+
     printf("    -s <server path>        CA Server DNS name.\n");
     printf("    -c <name of ca>         Name of the certificate authority.  This is not the server name but the name used in the Common Name of the issuing authority.\n");
-    printf("    -w <output file path>   Signed certificate will be written to <output file path> in DER format.\n");
+    printf("    -k <path to keychain>   keychain to store certificate and private key. Stores in user keychain if not specified.\n");
     printf("    -t <template name>      Name of the template to use when signing the certificate. Common template names include User or Machine.\n");
-
 
 }
 
