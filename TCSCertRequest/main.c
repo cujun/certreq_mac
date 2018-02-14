@@ -321,6 +321,7 @@ void usage(void) {
     printf("    -c <name of ca>         Name of the certificate authority.  This is not the server name but the name used in the Common Name of the issuing authority.\n");
     printf("    -k <path to keychain>   keychain to store certificate and private key. Stores in user keychain if not specified.\n");
     printf("    -t <template name>      Name of the template to use when signing the certificate. Common template names include User or Machine.\n");
+    printf("    -v                      Verbose output\n");
 
 }
 
