@@ -45,6 +45,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      debugAsWhichUser = "root"
       language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
@@ -64,7 +65,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-n macpower.twocanoes.com -g tperfitt -s win-fgivt3j3gi9.twocanoes.com -c tcsca -w /tmp/ad.cer -t Machine"
+            argument = "-n macpower.twocanoes.com -g tperfitt -s win-fgivt3j3gi9.twocanoes.com -c tcsca  -t Machine"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-n macpower.twocanoes.com -g tperfitt -s win-fgivt3j3gi9.twocanoes.com -c tcsca -t Machine -k /Library/Keychains/System.keychain"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

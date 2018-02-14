@@ -9,7 +9,7 @@
 #include "TCSCertificateSigningRequest.h"
 
 
-int generate_csr(char *csr,unsigned int *csr_size,char * in_label,algorithm_type in_algorithm_type, key_size in_key_size,key_usage in_key_usage,algorithm in_algorithm,char * in_challenge_string,char *in_common_name, char * in_country, char * in_organization, char *in_organization_unit, char *in_state,char *in_email){
+int generate_csr(char *csr,unsigned int *csr_size,char * in_label,char *keychain_path,algorithm_type in_algorithm_type, key_size in_key_size,key_usage in_key_usage,algorithm in_algorithm,char * in_challenge_string,char *in_common_name, char * in_country, char * in_organization, char *in_organization_unit, char *in_state,char *in_email){
     
     
     char label[255];
@@ -146,8 +146,7 @@ int generate_csr(char *csr,unsigned int *csr_size,char * in_label,algorithm_type
     int fd[2];
     pipe(fd);
     
-    char *args[5];
-    
+    char *args[6];
     char template[] = "/tmp/tmpdir.XXXXXX";
     char *tmp_dirname = mkdtemp (template);
     char temp_file[2048];
@@ -157,8 +156,15 @@ int generate_csr(char *csr,unsigned int *csr_size,char * in_label,algorithm_type
     args[1]="r";
     args[2]=temp_file;
     args[3]="d";
-    args[4]=NULL;
-    
+    if (keychain_path) {
+        args[4]=malloc(PATH_MAX);
+        sprintf(args[4],"k=%s",keychain_path);
+        args[5]=NULL;
+    }
+    else {
+        args[4]=NULL;
+    }
+
     
     child_pid=fork();
     
@@ -177,11 +183,12 @@ int generate_csr(char *csr,unsigned int *csr_size,char * in_label,algorithm_type
         
     }
     close(fd[0]);
-    dup2(fd[1],STDOUT_FILENO);
-    close(fd[1]);
+    FILE *pipe_in;
+    pipe_in=fdopen(fd[1], "w");
     
-    printf("%s",command_string);  //send command
-    fflush(stdout);
+    fprintf(pipe_in,"%s",command_string);  //send command
+    fflush(pipe_in);
+    fclose(pipe_in);
     wait(0);
     
     struct stat st;
@@ -195,20 +202,18 @@ int generate_csr(char *csr,unsigned int *csr_size,char * in_label,algorithm_type
         return -1;
     }
     
-//    char *buffer = calloc(1, size);
-    size_t bytesRead = 0;
+
     FILE *file=fopen(temp_file, "r");
     
     if (file != NULL)
     {
-        // read up to sizeof(buffer) bytes
-        while ((bytesRead = fread(csr, 1, size, file)) > 0)
-        {
+        unsigned long bytesread=fread(csr, 1, size, file);
+        if (bytesread!=size){
+            fprintf(stderr,"error reading cert\n");
+            return -1;
         }
+        
     }
-    
-    
-    
     *csr_size=(unsigned int)size;
     
     return 0;
