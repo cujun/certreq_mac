@@ -7,15 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76112C42136CAE50000018BA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 76112C41136CAE50000018BA /* main.c */; };
-		76469CC420311FC6006CC471 /* TCSCertificateSigningRequest.c in Sources */ = {isa = PBXBuildFile; fileRef = 76469CC320311FC6006CC471 /* TCSCertificateSigningRequest.c */; };
+		76117218203B9E860040338D /* tcscertrequest in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76112C3A136CAE50000018BA /* tcscertrequest */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		76117220203B9FAA0040338D /* TCSCertificateRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76117215203B93D90040338D /* TCSCertificateRequest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		764D6FB72033E5AC008F24BC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764D6FB62033E5AC008F24BC /* Security.framework */; };
+		76B60023203BA48800B0ABA4 /* TCSCertificateRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76117215203B93D90040338D /* TCSCertificateRequest.framework */; };
+		76B60025203BB2A600B0ABA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B60024203BB2A600B0ABA4 /* main.m */; };
+		76B60027203BBBC400B0ABA4 /* TCSCertificateRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76117215203B93D90040338D /* TCSCertificateRequest.framework */; };
 		76D10D072023FA1C0060A993 /* ms-icp_cstub.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D042023FA100060A993 /* ms-icp_cstub.o */; };
 		76D10D62202400550060A993 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D61202400550060A993 /* CoreFoundation.framework */; };
 		76D10D64202400850060A993 /* DCERPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D63202400850060A993 /* DCERPC.framework */; };
+		76FC3D9D2037F1E400DCC7CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC3D9C2037F1E400DCC7CF /* AppDelegate.m */; };
+		76FC3D9F2037F1E400DCC7CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FC3D9E2037F1E400DCC7CF /* Assets.xcassets */; };
+		76FC3DA22037F1E400DCC7CF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76FC3DA02037F1E400DCC7CF /* MainMenu.xib */; };
+		76FC3DA52037F1E400DCC7CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC3DA42037F1E400DCC7CF /* main.m */; };
+		76FC3DB02037F1E400DCC7CF /* TCS_Cert_RequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC3DAF2037F1E400DCC7CF /* TCS_Cert_RequestTests.m */; };
+		76FC3DB82037F3EE00DCC7CF /* ms-icp_cstub.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D042023FA100060A993 /* ms-icp_cstub.o */; };
+		76FC3DB92037F3FC00DCC7CF /* DCERPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D10D63202400850060A993 /* DCERPC.framework */; };
+		76FC3DBA2037F3FE00DCC7CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 764D6FB62033E5AC008F24BC /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7611721B203B9EB10040338D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76112C31136CAE50000018BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76112C39136CAE50000018BA;
+			remoteInfo = tcscertrequest;
+		};
 		76D10D5F2023FE010060A993 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76112C31136CAE50000018BA /* Project object */;
@@ -23,15 +41,55 @@
 			remoteGlobalIDString = 76D10D5B2023FD130060A993;
 			remoteInfo = "ms-icp_cstub.o";
 		};
+		76FC3DAC2037F1E400DCC7CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76112C31136CAE50000018BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76FC3D982037F1E400DCC7CF;
+			remoteInfo = "TCS Cert Request";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		76117217203B9E7B0040338D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 12;
+			files = (
+				76117218203B9E860040338D /* tcscertrequest in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76881FEA203B61D000A67877 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				76117220203B9FAA0040338D /* TCSCertificateRequest.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76B60026203BBBB800B0ABA4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				76B60027203BBBC400B0ABA4 /* TCSCertificateRequest.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		76112C3A136CAE50000018BA /* tcscertrequest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tcscertrequest; sourceTree = BUILT_PRODUCTS_DIR; };
-		76112C41136CAE50000018BA /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		76469CC220311FC6006CC471 /* TCSCertificateSigningRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSCertificateSigningRequest.h; sourceTree = "<group>"; };
-		76469CC320311FC6006CC471 /* TCSCertificateSigningRequest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TCSCertificateSigningRequest.c; sourceTree = "<group>"; };
+		76117215203B93D90040338D /* TCSCertificateRequest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TCSCertificateRequest.framework; sourceTree = "<group>"; };
 		764D6FB62033E5AC008F24BC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		76A8B5811384955600BAD515 /* ms-icp.idl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "ms-icp.idl"; path = "../dce/ms-icp.idl"; sourceTree = "<group>"; };
+		76B60022203BA12900B0ABA4 /* ms-icp.idl */ = {isa = PBXFileReference; lastKnownFileType = text; name = "ms-icp.idl"; path = "dce/ms-icp.idl"; sourceTree = SOURCE_ROOT; };
+		76B60024203BB2A600B0ABA4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		76B60028203BBD7600B0ABA4 /* TCS Cert Request.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TCS Cert Request.entitlements"; sourceTree = "<group>"; };
 		76D10D042023FA100060A993 /* ms-icp_cstub.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = "ms-icp_cstub.o"; path = "dce/ms-icp_cstub.o"; sourceTree = SOURCE_ROOT; };
 		76D10D0B2023FABE0060A993 /* ms-icp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ms-icp.h"; sourceTree = "<group>"; };
 		76D10D0D2023FABE0060A993 /* codesets.idl */ = {isa = PBXFileReference; lastKnownFileType = text; path = codesets.idl; sourceTree = "<group>"; };
@@ -100,6 +158,16 @@
 		76D10D4E2023FABE0060A993 /* dtyp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dtyp.h; sourceTree = "<group>"; };
 		76D10D61202400550060A993 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		76D10D63202400850060A993 /* DCERPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DCERPC.framework; path = ../../../../../System/Library/PrivateFrameworks/DCERPC.framework; sourceTree = "<group>"; };
+		76FC3D992037F1E400DCC7CF /* TCS Cert Request.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCS Cert Request.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76FC3D9B2037F1E400DCC7CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		76FC3D9C2037F1E400DCC7CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		76FC3D9E2037F1E400DCC7CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		76FC3DA12037F1E400DCC7CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		76FC3DA32037F1E400DCC7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76FC3DA42037F1E400DCC7CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		76FC3DAB2037F1E400DCC7CF /* TCS Cert RequestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TCS Cert RequestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76FC3DAF2037F1E400DCC7CF /* TCS_Cert_RequestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCS_Cert_RequestTests.m; sourceTree = "<group>"; };
+		76FC3DB12037F1E400DCC7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +175,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B60023203BA48800B0ABA4 /* TCSCertificateRequest.framework in Frameworks */,
 				764D6FB72033E5AC008F24BC /* Security.framework in Frameworks */,
 				76D10D64202400850060A993 /* DCERPC.framework in Frameworks */,
 				76D10D62202400550060A993 /* CoreFoundation.framework in Frameworks */,
 				76D10D072023FA1C0060A993 /* ms-icp_cstub.o in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FC3D962037F1E400DCC7CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76FC3DB82037F3EE00DCC7CF /* ms-icp_cstub.o in Frameworks */,
+				76FC3DB92037F3FC00DCC7CF /* DCERPC.framework in Frameworks */,
+				76FC3DBA2037F3FE00DCC7CF /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FC3DA82037F1E400DCC7CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +206,17 @@
 		76112C2F136CAE50000018BA = {
 			isa = PBXGroup;
 			children = (
-				76112C40136CAE50000018BA /* TCSCertRequest */,
+				76B60028203BBD7600B0ABA4 /* TCS Cert Request.entitlements */,
+				7611721D203B9EFD0040338D /* CLI Tool */,
+				76112C43136CAE50000018BA /* Supporting Files */,
+				76D10D0A2023FABE0060A993 /* headers */,
+				76FC3D9B2037F1E400DCC7CF /* AppDelegate.h */,
+				76FC3D9C2037F1E400DCC7CF /* AppDelegate.m */,
+				76FC3D9E2037F1E400DCC7CF /* Assets.xcassets */,
+				76FC3DA02037F1E400DCC7CF /* MainMenu.xib */,
+				76FC3DA32037F1E400DCC7CF /* Info.plist */,
+				76FC3DA42037F1E400DCC7CF /* main.m */,
+				76FC3DAE2037F1E400DCC7CF /* TCS Cert RequestTests */,
 				76112C3D136CAE50000018BA /* Frameworks */,
 				76112C3B136CAE50000018BA /* Products */,
 			);
@@ -130,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				76112C3A136CAE50000018BA /* tcscertrequest */,
+				76FC3D992037F1E400DCC7CF /* TCS Cert Request.app */,
+				76FC3DAB2037F1E400DCC7CF /* TCS Cert RequestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,6 +235,7 @@
 		76112C3D136CAE50000018BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76117215203B93D90040338D /* TCSCertificateRequest.framework */,
 				764D6FB62033E5AC008F24BC /* Security.framework */,
 				76D10D63202400850060A993 /* DCERPC.framework */,
 				76D10D61202400550060A993 /* CoreFoundation.framework */,
@@ -144,25 +243,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		76112C40136CAE50000018BA /* TCSCertRequest */ = {
-			isa = PBXGroup;
-			children = (
-				76469CC220311FC6006CC471 /* TCSCertificateSigningRequest.h */,
-				76469CC320311FC6006CC471 /* TCSCertificateSigningRequest.c */,
-				76D10D0A2023FABE0060A993 /* headers */,
-				76112C41136CAE50000018BA /* main.c */,
-				76112C43136CAE50000018BA /* Supporting Files */,
-			);
-			path = TCSCertRequest;
-			sourceTree = "<group>";
-		};
 		76112C43136CAE50000018BA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				76D10D042023FA100060A993 /* ms-icp_cstub.o */,
-				76A8B5811384955600BAD515 /* ms-icp.idl */,
+				76B60022203BA12900B0ABA4 /* ms-icp.idl */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7611721D203B9EFD0040338D /* CLI Tool */ = {
+			isa = PBXGroup;
+			children = (
+				76B60024203BB2A600B0ABA4 /* main.m */,
+			);
+			path = "CLI Tool";
 			sourceTree = "<group>";
 		};
 		76D10D0A2023FABE0060A993 /* headers */ = {
@@ -261,6 +356,15 @@
 			path = darwin;
 			sourceTree = "<group>";
 		};
+		76FC3DAE2037F1E400DCC7CF /* TCS Cert RequestTests */ = {
+			isa = PBXGroup;
+			children = (
+				76FC3DAF2037F1E400DCC7CF /* TCS_Cert_RequestTests.m */,
+				76FC3DB12037F1E400DCC7CF /* Info.plist */,
+			);
+			path = "TCS Cert RequestTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
@@ -288,6 +392,7 @@
 				76A8B585138499AF00BAD515 /* Compile IDL */,
 				76112C36136CAE50000018BA /* Sources */,
 				76112C37136CAE50000018BA /* Frameworks */,
+				76B60026203BBBB800B0ABA4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -299,6 +404,44 @@
 			productReference = 76112C3A136CAE50000018BA /* tcscertrequest */;
 			productType = "com.apple.product-type.tool";
 		};
+		76FC3D982037F1E400DCC7CF /* TCS Cert Request */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76FC3DB22037F1E400DCC7CF /* Build configuration list for PBXNativeTarget "TCS Cert Request" */;
+			buildPhases = (
+				76FC3D952037F1E400DCC7CF /* Sources */,
+				76FC3D962037F1E400DCC7CF /* Frameworks */,
+				76FC3D972037F1E400DCC7CF /* Resources */,
+				76881FEA203B61D000A67877 /* CopyFiles */,
+				76117217203B9E7B0040338D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7611721C203B9EB10040338D /* PBXTargetDependency */,
+			);
+			name = "TCS Cert Request";
+			productName = "TCS Cert Request";
+			productReference = 76FC3D992037F1E400DCC7CF /* TCS Cert Request.app */;
+			productType = "com.apple.product-type.application";
+		};
+		76FC3DAA2037F1E400DCC7CF /* TCS Cert RequestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76FC3DB52037F1E400DCC7CF /* Build configuration list for PBXNativeTarget "TCS Cert RequestTests" */;
+			buildPhases = (
+				76FC3DA72037F1E400DCC7CF /* Sources */,
+				76FC3DA82037F1E400DCC7CF /* Frameworks */,
+				76FC3DA92037F1E400DCC7CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76FC3DAD2037F1E400DCC7CF /* PBXTargetDependency */,
+			);
+			name = "TCS Cert RequestTests";
+			productName = "TCS Cert RequestTests";
+			productReference = 76FC3DAB2037F1E400DCC7CF /* TCS Cert RequestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -307,10 +450,31 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 				TargetAttributes = {
+					76112C39136CAE50000018BA = {
+						DevelopmentTeam = UXP6YEHSPW;
+					};
 					76D10D5B2023FD130060A993 = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = UXP6YEHSPW;
 						ProvisioningStyle = Automatic;
+					};
+					76FC3D982037F1E400DCC7CF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					76FC3DAA2037F1E400DCC7CF = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = UXP6YEHSPW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 76FC3D982037F1E400DCC7CF;
 					};
 				};
 			};
@@ -320,6 +484,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 76112C2F136CAE50000018BA;
 			productRefGroup = 76112C3B136CAE50000018BA /* Products */;
@@ -328,9 +493,30 @@
 			targets = (
 				76112C39136CAE50000018BA /* tcscertrequest */,
 				76D10D5B2023FD130060A993 /* ms-icp_cstub.o */,
+				76FC3D982037F1E400DCC7CF /* TCS Cert Request */,
+				76FC3DAA2037F1E400DCC7CF /* TCS Cert RequestTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		76FC3D972037F1E400DCC7CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76FC3D9F2037F1E400DCC7CF /* Assets.xcassets in Resources */,
+				76FC3DA22037F1E400DCC7CF /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FC3DA92037F1E400DCC7CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		76A8B585138499AF00BAD515 /* Compile IDL */ = {
@@ -345,7 +531,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p ${SRCROOT}/build\ncd ${SRCROOT}/build\n\n#cp ${SRCROOT}/\n#/usr/local/bin/dceidl ${SRCROOT}/TCSCertRequest/ms-icp.idl  -I ${SRCROOT}/DCERPC.framework/Versions/A/Headers\n#/usr/local/bin/dceidl   ${SRCROOT}/GetCert/ms-icp.idl cc_cmd \"/usr/bin/xcrun cc -c  -D_SOCKADDR_LEN -D_GNU_SOURCE -D_REENTRANT -D_POSIX_C_SOURCE=3 -arch i386 -arch x86_64\" -I ${SRCROOT}/DCERPC.framework/Versions/A/Headers";
+			shellScript = "#mkdir -p ${SRCROOT}/build\n#cd ${SRCROOT}/build\n\n#cp ${SRCROOT}/\n#/usr/local/bin/dceidl ${SRCROOT}/TCSCertRequest/dce/ms-icp.idl  -I ${SRCROOT}/DCERPC.framework/Versions/A/Headers\n#/usr/local/bin/dceidl   ${SRCROOT}/GetCert/ms-icp.idl cc_cmd \"/usr/bin/xcrun cc -c  -D_SOCKADDR_LEN -D_GNU_SOURCE -D_REENTRANT -D_POSIX_C_SOURCE=3 -arch i386 -arch x86_64\" -I ${SRCROOT}/DCERPC.framework/Versions/A/Headers";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -354,20 +540,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76469CC420311FC6006CC471 /* TCSCertificateSigningRequest.c in Sources */,
-				76112C42136CAE50000018BA /* main.c in Sources */,
+				76B60025203BB2A600B0ABA4 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FC3D952037F1E400DCC7CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76FC3DA52037F1E400DCC7CF /* main.m in Sources */,
+				76FC3D9D2037F1E400DCC7CF /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FC3DA72037F1E400DCC7CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76FC3DB02037F1E400DCC7CF /* TCS_Cert_RequestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7611721C203B9EB10040338D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76112C39136CAE50000018BA /* tcscertrequest */;
+			targetProxy = 7611721B203B9EB10040338D /* PBXContainerItemProxy */;
+		};
 		76D10D602023FE010060A993 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76D10D5B2023FD130060A993 /* ms-icp_cstub.o */;
 			targetProxy = 76D10D5F2023FE010060A993 /* PBXContainerItemProxy */;
 		};
+		76FC3DAD2037F1E400DCC7CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76FC3D982037F1E400DCC7CF /* TCS Cert Request */;
+			targetProxy = 76FC3DAC2037F1E400DCC7CF /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		76FC3DA02037F1E400DCC7CF /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76FC3DA12037F1E400DCC7CF /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		76112C47136CAE50000018BA /* Debug */ = {
@@ -407,19 +630,29 @@
 		76112C4A136CAE50000018BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/System/Library/PrivateFrameworks,
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/headers\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/headers\"",
+					"\"$(SRCROOT)\"",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "-rpath @executable_path/../Frameworks -rpath @executable_path";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -428,19 +661,29 @@
 		76112C4B136CAE50000018BA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/System/Library/PrivateFrameworks,
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/headers\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/headers\"",
+					"\"$(SRCROOT)\"",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "-rpath @executable_path/../Frameworks -rpath @executable_path";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -550,6 +793,248 @@
 			};
 			name = Release;
 		};
+		76FC3DB32037F1E400DCC7CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/headers\"";
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twocanoes.TCS-Cert-Request";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		76FC3DB42037F1E400DCC7CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/headers\"";
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twocanoes.TCS-Cert-Request";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		76FC3DB62037F1E400DCC7CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "TCS Cert RequestTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twocanoes.TCS-Cert-RequestTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCS Cert Request.app/Contents/MacOS/TCS Cert Request";
+			};
+			name = Debug;
+		};
+		76FC3DB72037F1E400DCC7CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "TCS Cert RequestTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twocanoes.TCS-Cert-RequestTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCS Cert Request.app/Contents/MacOS/TCS Cert Request";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -576,6 +1061,24 @@
 			buildConfigurations = (
 				76D10D5D2023FD130060A993 /* Debug */,
 				76D10D5E2023FD130060A993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76FC3DB22037F1E400DCC7CF /* Build configuration list for PBXNativeTarget "TCS Cert Request" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76FC3DB32037F1E400DCC7CF /* Debug */,
+				76FC3DB42037F1E400DCC7CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76FC3DB52037F1E400DCC7CF /* Build configuration list for PBXNativeTarget "TCS Cert RequestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76FC3DB62037F1E400DCC7CF /* Debug */,
+				76FC3DB72037F1E400DCC7CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
