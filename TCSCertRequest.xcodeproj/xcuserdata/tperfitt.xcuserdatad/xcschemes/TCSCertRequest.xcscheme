@@ -65,12 +65,12 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-n macpower.twocanoes.com -g tperfitt -s win-fgivt3j3gi9.twocanoes.com -c tcsca  -t Machine"
-            isEnabled = "NO">
+            argument = "-n macpower.twocanoes.com -g tperfitt -s win-fgivt3j3gi9.twocanoes.com -c tcsca  -t User"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-n macpower.twocanoes.com -g tperfitt -s win-fgivt3j3gi9.twocanoes.com -c tcsca -t Machine -k /Library/Keychains/System.keychain"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

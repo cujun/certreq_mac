@@ -75,9 +75,9 @@ typedef uint16_t utf16_t;
 typedef uint8_t utf8_t;
 
 #endif
-typedef uint32_t BOOL;
-typedef BOOL *PBOOL;
-typedef BOOL *LPBOOL;
+//typedef uint32_t BOOL;
+typedef uint32_t *PBOOL;
+typedef uint32_t *LPBOOL;
 typedef uint8_t BYTE;
 typedef BYTE *PBYTE;
 typedef BYTE *LPBYTE;
