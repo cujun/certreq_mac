@@ -69,6 +69,7 @@
                                     &status);
     
     if (status!=0) {
+        [self showErrorWithMessage:[NSString stringWithFormat:@"Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket.  Status is %x.\n",status]];
         printf("Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket.  Status is %x.\n",status);
         return;
         
