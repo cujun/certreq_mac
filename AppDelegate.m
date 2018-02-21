@@ -242,9 +242,9 @@
 
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    self.certificateAuthorityDNSName=@"win-fgivt3j3gi9.twocanoes.com";
-    self.certificateAuthorityName=@"tcsca";
-    self.certificateTemplate=@"User";
+//    self.certificateAuthorityDNSName=@"win-fgivt3j3gi9.twocanoes.com";
+//    self.certificateAuthorityName=@"tcsca";
+//    self.certificateTemplate=@"User";
 
     
 }
