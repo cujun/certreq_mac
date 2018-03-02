@@ -37,7 +37,7 @@
     }
     return self;
 }
--(void)submitRequestToActiveDirectoryWithCSR:(NSData *)inCSR error:(NSError **)error{
+-(NSData *)submitRequestToActiveDirectoryWithCSR:(NSData *)inCSR error:(NSError **)error{
     const char *servername=[self.certificateAuthorityDNSName UTF8String];
     const char *ca_name=[self.certificateAuthorityName UTF8String];
     const char *cert_template=[self.certificateTemplate UTF8String];
@@ -73,7 +73,7 @@
     if (status!=0) {
         *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":@"Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket."}];
         
-        return;
+        return nil;
 
     }
     unsigned_char_t *server_princ_name=malloc(1024);
@@ -96,7 +96,7 @@
     
     if (status!=0) {
         printf("Cound not set authentication mechanism.  Error is %x\n",status);
-        return;
+        return nil;
         
     }
     
@@ -148,7 +148,7 @@
         if (outstatus!=0) {
             
             printf("ERROR: CertServerRequest %i\n",outstatus);
-            return ;
+            return nil;
         }
         if (pdwDisposition==CR_DISP_ISSUED) fprintf(stderr,"Certificate issued.\n");
         else if (pdwDisposition==CR_DISP_UNDER_SUBMISSION) printf("Certificate submitted\n");
@@ -158,7 +158,7 @@
     DCETHREAD_CATCH_ALL(thread_exc){
         *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":[NSString stringWithFormat:@"Verify that you have a kerberos ticket and that the service principal name of \"%s\" is correct.",server_princ_name]}];
 
-        return ;
+        return nil;
         
     }
     DCETHREAD_ENDTRY
@@ -177,7 +177,7 @@
             
                 
             
-            return;
+            return nil;
             
         }
         SecCertificateRef cert;
@@ -188,8 +188,9 @@
         cert = SecCertificateCreateWithData(NULL, (CFDataRef) cert_data);
         
         self.certificate=(NSData *)CFBridgingRelease(cert_data);
-        [TCSecurity installCertificateToKeychain:CFBridgingRelease(cert_data) error:nil];
+        return CFBridgingRelease(cert_data);
     }
+    return nil;
 }
 
 @end

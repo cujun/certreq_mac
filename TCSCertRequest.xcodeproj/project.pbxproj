@@ -6,6 +6,22 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		76FABDAF20491699001136D4 /* TCSCertRequest */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 76FABDB020491699001136D4 /* Build configuration list for PBXAggregateTarget "TCSCertRequest" */;
+			buildPhases = (
+			);
+			dependencies = (
+				76FABDB8204916B1001136D4 /* PBXTargetDependency */,
+				76FABDB4204916B1001136D4 /* PBXTargetDependency */,
+				76FABDB6204916B1001136D4 /* PBXTargetDependency */,
+			);
+			name = TCSCertRequest;
+			productName = BuildItAll;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		760F6C922046515A00C2F647 /* TCSADCertificateRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 760F6C902046515A00C2F647 /* TCSADCertificateRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		760F6C932046515A00C2F647 /* TCSADCertificateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F6C912046515A00C2F647 /* TCSADCertificateRequest.m */; };
@@ -161,6 +177,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7671091120353EC900EFD03E;
 			remoteInfo = TCSCertificateRequest;
+		};
+		76FABDB3204916B1001136D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7671090920353EC900EFD03E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76881FD0203B4BA000A67877;
+			remoteInfo = "TCS Cert Request";
+		};
+		76FABDB5204916B1001136D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7671090920353EC900EFD03E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76FABD9C20490698001136D4;
+			remoteInfo = tcscertrequest;
+		};
+		76FABDB7204916B1001136D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7671090920353EC900EFD03E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7671091120353EC900EFD03E;
+			remoteInfo = TCSCertificateRequest;
+		};
+		76FABDB9204916D9001136D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7671090920353EC900EFD03E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 760F6D3620465C7D00C2F647;
+			remoteInfo = TCSCertificateRequestStaticLibrary;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -796,6 +840,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				76FABDBA204916D9001136D4 /* PBXTargetDependency */,
 			);
 			name = tcscertrequest;
 			productName = tcscertrequest;
@@ -808,6 +853,9 @@
 		7671090920353EC900EFD03E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Twocanoes Software";
 				TargetAttributes = {
@@ -840,6 +888,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					76FABDAF20491699001136D4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 7671090C20353EC900EFD03E /* Build configuration list for PBXProject "TCSCertRequest" */;
@@ -861,6 +913,7 @@
 				760F6D1E2046544C00C2F647 /* ms-icp_cstub.o */,
 				760F6D3620465C7D00C2F647 /* TCSCertificateRequestStaticLibrary */,
 				7671091120353EC900EFD03E /* TCSCertificateRequest */,
+				76FABDAF20491699001136D4 /* TCSCertRequest */,
 			);
 		};
 /* End PBXProject section */
@@ -996,6 +1049,26 @@
 			isa = PBXTargetDependency;
 			target = 7671091120353EC900EFD03E /* TCSCertificateRequest */;
 			targetProxy = 76881FE2203B4BE000A67877 /* PBXContainerItemProxy */;
+		};
+		76FABDB4204916B1001136D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76881FD0203B4BA000A67877 /* TCS Cert Request */;
+			targetProxy = 76FABDB3204916B1001136D4 /* PBXContainerItemProxy */;
+		};
+		76FABDB6204916B1001136D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76FABD9C20490698001136D4 /* tcscertrequest */;
+			targetProxy = 76FABDB5204916B1001136D4 /* PBXContainerItemProxy */;
+		};
+		76FABDB8204916B1001136D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7671091120353EC900EFD03E /* TCSCertificateRequest */;
+			targetProxy = 76FABDB7204916B1001136D4 /* PBXContainerItemProxy */;
+		};
+		76FABDBA204916D9001136D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 760F6D3620465C7D00C2F647 /* TCSCertificateRequestStaticLibrary */;
+			targetProxy = 76FABDB9204916D9001136D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1323,6 +1396,24 @@
 			};
 			name = Release;
 		};
+		76FABDB120491699001136D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		76FABDB220491699001136D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1385,6 +1476,15 @@
 			buildConfigurations = (
 				76FABDA220490698001136D4 /* Debug */,
 				76FABDA320490698001136D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76FABDB020491699001136D4 /* Build configuration list for PBXAggregateTarget "TCSCertRequest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76FABDB120491699001136D4 /* Debug */,
+				76FABDB220491699001136D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

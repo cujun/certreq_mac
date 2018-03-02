@@ -12,6 +12,5 @@
 @property (nonatomic, readonly, strong) NSData *certificate;
 - (instancetype)initWithServerName:(NSString *)serverName certificateAuthorityName:(NSString *)certificateAuthorityName certificateTemplate:(NSString *)certificateTemplate verbose:(BOOL)isVerbose error:(NSError **)error;
 
--(void)submitRequestToActiveDirectoryWithCSR:(NSData *)inCSR error:(NSError **)error;
-
+-(NSData *)submitRequestToActiveDirectoryWithCSR:(NSData *)inCSR error:(NSError **)error;
 @end

@@ -60,11 +60,23 @@
         return;
     }
     
-        TCSADCertificateRequest *request=[[TCSADCertificateRequest alloc] initWithServerName:self.certAuthorityDNSName certificateAuthorityName:self.certAuthorityName certificateTemplate:self.certAuthorityTemplate verbose:NO error:nil];
+    TCSADCertificateRequest *request=[[TCSADCertificateRequest alloc] initWithServerName:self.certAuthorityDNSName certificateAuthorityName:self.certAuthorityName certificateTemplate:self.certAuthorityTemplate verbose:NO error:nil];
+
+    NSData *returnedCert=[request submitRequestToActiveDirectoryWithCSR:csr error:&err];
 
     
+    if (self.certificateDeviceSelected==TCSDEVICEYUBIKEY) {
+        [TCSCertAppHelper installSignedCertificate:returnedCert ToYubikeySlot:self.yubikeySlot error:nil];
+        [TCSecurity installCertificateToKeychain:returnedCert error:nil];
+
+    }
+    else {
+        [TCSecurity installCertificateToKeychain:returnedCert error:nil];
+
+    }
     
-    [request submitRequestToActiveDirectoryWithCSR:csr error:&err];
+    
+
     if (err) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];

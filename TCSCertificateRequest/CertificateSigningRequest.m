@@ -6,7 +6,8 @@
 //  Copyright © 2018 Twocanoes Software. All rights reserved.
 //
 
-#import "CertificateSigningRequest.h"
+#
+#import "TCSCertificateRequest/CertificateSigningRequest.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import "DER.h"
 #import "ASN1Primative.h"
