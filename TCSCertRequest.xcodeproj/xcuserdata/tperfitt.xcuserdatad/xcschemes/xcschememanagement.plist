@@ -4,15 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TCS Cert Request.xcscheme</key>
+		<key>SimpleCSRRequest.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>TCSCertRequest.xcscheme</key>
+		<key>TCSCertificateRequest.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>TCSCertificateRequestStatic.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>TCSCertificateRequestStaticLibrary.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>ms-icp_cstub.o.xcscheme</key>
 		<dict>
@@ -22,27 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>76112C39136CAE50000018BA</key>
+		<key>7671091120353EC900EFD03E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>76D10D572023FB4E0060A993</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>76D10D5B2023FD130060A993</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>76FC3D982037F1E400DCC7CF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>76FC3DAA2037F1E400DCC7CF</key>
+		<key>7671091A20353EC900EFD03E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
