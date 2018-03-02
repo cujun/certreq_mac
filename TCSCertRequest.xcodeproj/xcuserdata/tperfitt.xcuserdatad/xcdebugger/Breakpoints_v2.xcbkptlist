@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TCS Cert Request/AppDelegate.m"
-            timestampString = "540777570.657148"
+            filePath = "SimpleCSRRequest/AppDelegate.m"
+            timestampString = "541655707.43144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-applicationDidFinishLaunching:"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-generateCSR:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TCS Cert Request/AppDelegate.m"
-            timestampString = "540777570.657563"
+            filePath = "tcscertrequest/main.m"
+            timestampString = "541659965.783246"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-applicationDidFinishLaunching:"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "main"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TCS Cert Request GUI/AppDelegate.m"
+            timestampString = "541711856.86875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-generateCSR:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,29 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TCS Cert Request/AppDelegate.m"
-            timestampString = "540777570.657925"
+            filePath = "TCS Cert Request GUI/TCSCertAppHelper.m"
+            timestampString = "541711856.869036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-applicationDidFinishLaunching:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AppDelegate.m"
-            timestampString = "540838762.155799"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "-requestCertificate:"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "+installSignedCertificate:ToYubikeySlot:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
