@@ -120,6 +120,15 @@
 		76881FDD203B4BA000A67877 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76881FDC203B4BA000A67877 /* main.m */; };
 		76881FE5203B4BF300A67877 /* TCSCertificateRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7671091220353EC900EFD03E /* TCSCertificateRequest.framework */; };
 		76881FE7203B4C0D00A67877 /* TCSCertificateRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7671091220353EC900EFD03E /* TCSCertificateRequest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76FABDA020490698001136D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FABD9F20490698001136D4 /* main.m */; };
+		76FABDA6204907A2001136D4 /* TCSCertAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FABDA5204907A2001136D4 /* TCSCertAppHelper.m */; };
+		76FABDA7204907A2001136D4 /* TCSCertAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FABDA5204907A2001136D4 /* TCSCertAppHelper.m */; };
+		76FABDA820490927001136D4 /* libTCSCertificateRequestStaticLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 760F6D3720465C7D00C2F647 /* libTCSCertificateRequestStaticLibrary.a */; };
+		76FABDA92049094A001136D4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76784538203FE383000795AD /* libcrypto.a */; };
+		76FABDAA2049094A001136D4 /* libykcs11.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76784536203FE379000795AD /* libykcs11.a */; };
+		76FABDAB2049094A001136D4 /* libykpiv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7678453A203FE3BB000795AD /* libykpiv.a */; };
+		76FABDAC20490E5E001136D4 /* DCERPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 760F6D28204655B000C2F647 /* DCERPC.framework */; };
+		76FABDAE20490EAF001136D4 /* ms-icp_cstub.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 760F6D242046550B00C2F647 /* ms-icp_cstub.o */; };
 		76FC3D4E2037DF0D00DCC7CF /* ASN1Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 76FC3D4C2037DF0D00DCC7CF /* ASN1Utilities.h */; };
 		76FC3D4F2037DF0D00DCC7CF /* ASN1Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC3D4D2037DF0D00DCC7CF /* ASN1Utilities.m */; };
 /* End PBXBuildFile section */
@@ -174,6 +183,15 @@
 				76881FE7203B4C0D00A67877 /* TCSCertificateRequest.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FABD9B20490698001136D4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -290,6 +308,10 @@
 		76881FDE203B4BA000A67877 /* SimpleCSRRequest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleCSRRequest.entitlements; sourceTree = "<group>"; };
 		76881FE8203B54CE00A67877 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		76881FE9203B56C100A67877 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76FABD9D20490698001136D4 /* tcscertrequest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tcscertrequest; sourceTree = BUILT_PRODUCTS_DIR; };
+		76FABD9F20490698001136D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		76FABDA4204907A2001136D4 /* TCSCertAppHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSCertAppHelper.h; sourceTree = "<group>"; };
+		76FABDA5204907A2001136D4 /* TCSCertAppHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSCertAppHelper.m; sourceTree = "<group>"; };
 		76FC3D4C2037DF0D00DCC7CF /* ASN1Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASN1Utilities.h; path = TCSCertificateRequest/ASN/ASN1Utilities.h; sourceTree = SOURCE_ROOT; };
 		76FC3D4D2037DF0D00DCC7CF /* ASN1Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASN1Utilities.m; path = TCSCertificateRequest/ASN/ASN1Utilities.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -330,6 +352,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				76881FE5203B4BF300A67877 /* TCSCertificateRequest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FABD9A20490698001136D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76FABDAE20490EAF001136D4 /* ms-icp_cstub.o in Frameworks */,
+				76FABDA820490927001136D4 /* libTCSCertificateRequestStaticLibrary.a in Frameworks */,
+				76FABDA92049094A001136D4 /* libcrypto.a in Frameworks */,
+				76FABDAC20490E5E001136D4 /* DCERPC.framework in Frameworks */,
+				76FABDAA2049094A001136D4 /* libykcs11.a in Frameworks */,
+				76FABDAB2049094A001136D4 /* libykpiv.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +499,7 @@
 				7671091420353EC900EFD03E /* TCSCertificateRequest */,
 				7671091F20353EC900EFD03E /* TCSCertificateRequestTests */,
 				76881FD2203B4BA000A67877 /* TCS Cert Request GUI */,
+				76FABD9E20490698001136D4 /* tcscertrequest */,
 				7671091320353EC900EFD03E /* Products */,
 				76881FE4203B4BF300A67877 /* Frameworks */,
 			);
@@ -476,6 +512,7 @@
 				7671091B20353EC900EFD03E /* TCSCertificateRequestFrameworkTests.xctest */,
 				76881FD1203B4BA000A67877 /* TCS Cert Request.app */,
 				760F6D3720465C7D00C2F647 /* libTCSCertificateRequestStaticLibrary.a */,
+				76FABD9D20490698001136D4 /* tcscertrequest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -543,6 +580,8 @@
 		76881FD2203B4BA000A67877 /* TCS Cert Request GUI */ = {
 			isa = PBXGroup;
 			children = (
+				76FABDA4204907A2001136D4 /* TCSCertAppHelper.h */,
+				76FABDA5204907A2001136D4 /* TCSCertAppHelper.m */,
 				76881FD3203B4BA000A67877 /* AppDelegate.h */,
 				76881FD4203B4BA000A67877 /* AppDelegate.m */,
 				76881FD6203B4BA000A67877 /* Assets.xcassets */,
@@ -566,6 +605,14 @@
 				7678453A203FE3BB000795AD /* libykpiv.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76FABD9E20490698001136D4 /* tcscertrequest */ = {
+			isa = PBXGroup;
+			children = (
+				76FABD9F20490698001136D4 /* main.m */,
+			);
+			path = tcscertrequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -738,6 +785,23 @@
 			productReference = 76881FD1203B4BA000A67877 /* TCS Cert Request.app */;
 			productType = "com.apple.product-type.application";
 		};
+		76FABD9C20490698001136D4 /* tcscertrequest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76FABDA120490698001136D4 /* Build configuration list for PBXNativeTarget "tcscertrequest" */;
+			buildPhases = (
+				76FABD9920490698001136D4 /* Sources */,
+				76FABD9A20490698001136D4 /* Frameworks */,
+				76FABD9B20490698001136D4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tcscertrequest;
+			productName = tcscertrequest;
+			productReference = 76FABD9D20490698001136D4 /* tcscertrequest */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -772,6 +836,10 @@
 							};
 						};
 					};
+					76FABD9C20490698001136D4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 7671090C20353EC900EFD03E /* Build configuration list for PBXProject "TCSCertRequest" */;
@@ -787,11 +855,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7671091120353EC900EFD03E /* TCSCertificateRequest */,
 				76881FD0203B4BA000A67877 /* TCS Cert Request */,
+				76FABD9C20490698001136D4 /* tcscertrequest */,
 				7671091A20353EC900EFD03E /* TCSCertificateRequestFrameworkTests */,
 				760F6D1E2046544C00C2F647 /* ms-icp_cstub.o */,
 				760F6D3620465C7D00C2F647 /* TCSCertificateRequestStaticLibrary */,
+				7671091120353EC900EFD03E /* TCSCertificateRequest */,
 			);
 		};
 /* End PBXProject section */
@@ -891,7 +960,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				76881FDD203B4BA000A67877 /* main.m in Sources */,
+				76FABDA6204907A2001136D4 /* TCSCertAppHelper.m in Sources */,
 				76881FD5203B4BA000A67877 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76FABD9920490698001136D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76FABDA7204907A2001136D4 /* TCSCertAppHelper.m in Sources */,
+				76FABDA020490698001136D4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,6 +1289,40 @@
 			};
 			name = Release;
 		};
+		76FABDA220490698001136D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		76FABDA320490698001136D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1263,6 +1376,15 @@
 			buildConfigurations = (
 				76881FE0203B4BA000A67877 /* Debug */,
 				76881FE1203B4BA000A67877 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76FABDA120490698001136D4 /* Build configuration list for PBXNativeTarget "tcscertrequest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76FABDA220490698001136D4 /* Debug */,
+				76FABDA320490698001136D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
