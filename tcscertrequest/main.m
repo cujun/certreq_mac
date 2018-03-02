@@ -96,6 +96,7 @@ int main(int argc,  char * argv[]) {
         NSData *csr=nil;
         NSError *error;
 
+        if (cert_cn==NULL) cert_cn="TCSCertRequest";
         NSString *serverNameString=[NSString stringWithUTF8String:servername];
         NSString *certAuthNameString=[NSString stringWithUTF8String:ca_name];
         NSString *templateString=[NSString stringWithUTF8String:cert_template];
@@ -120,15 +121,9 @@ int main(int argc,  char * argv[]) {
         NSError *err;
         [request submitRequestToActiveDirectoryWithCSR:csr error:&err];
         if (err) {
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert addButtonWithTitle:@"OK"];
+            fprintf(stderr, "%s\n", [[err.userInfo objectForKey:@"Error"] UTF8String]);
             
-            [alert setMessageText:@"Certificate Generation Error"];
-            [alert setInformativeText:[err.userInfo objectForKey:@"Error"]];
-            [alert runModal];
-            
-            
-            
+            return -1;
         }
 
         

@@ -8,10 +8,14 @@
 
 #import "AppDelegate.h"
 #import "TCSCertificateRequest.h"
+#import "TCSCertAppHelper.h"
 #define TCSDEVICEKEYCHAIN 0
 #define TCSDEVICEYUBIKEY 1
 
 @interface AppDelegate ()
+@property (nonatomic, strong) NSString *certAuthorityDNSName;
+@property (nonatomic, strong) NSString *certAuthorityName;
+@property (nonatomic, strong) NSString *certAuthorityTemplate;
 
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, assign) NSInteger certificateDeviceSelected;
@@ -30,12 +34,13 @@
 
 - (IBAction)generateCSR:(id)sender {
     NSData *csr=nil;
+    NSError *err;
     if (self.certificateDeviceSelected==TCSDEVICEYUBIKEY) {
-        csr=[self generateCSRFromYubikey:self];
+        csr=[TCSCertAppHelper generateCSRFromYubikeyWithManagementKey:_yubikeyManagementKey inSlot:_yubikeySlot commonName:self.commonName error:&err];
     }
     else if (self.certificateDeviceSelected==TCSDEVICEKEYCHAIN) {
         
-        csr=[self generateCSRFromKeychain:self];
+        csr=[TCSCertAppHelper generateCSRFromKeychainWithCommonName:self.commonName error:&err];
     }
     else {
         
@@ -55,9 +60,10 @@
         return;
     }
     
-    TCSADCertificateRequest *request=[[TCSADCertificateRequest alloc] initWithServerName:@"WIN-FGIVT3J3GI9.twocanoes.com" certificateAuthorityName:@"TCSCA" certificateTemplate:@"User" verbose:NO error:nil];
+        TCSADCertificateRequest *request=[[TCSADCertificateRequest alloc] initWithServerName:self.certAuthorityDNSName certificateAuthorityName:self.certAuthorityName certificateTemplate:self.certAuthorityTemplate verbose:NO error:nil];
+
     
-    NSError *err;
+    
     [request submitRequestToActiveDirectoryWithCSR:csr error:&err];
     if (err) {
         NSAlert *alert = [[NSAlert alloc] init];
