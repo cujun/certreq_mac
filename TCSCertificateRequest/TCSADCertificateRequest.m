@@ -74,11 +74,7 @@
         *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":@"Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket."}];
         
         return;
-#warning return error
-//        [self showErrorWithMessage:[NSString stringWithFormat:@"Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket.  Status is %x.\n",status]];
-//        printf("Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket.  Status is %x.\n",status);
-//        return;
-        
+
     }
     unsigned_char_t *server_princ_name=malloc(1024);
     snprintf((char *)server_princ_name,1024,"host/%s",servername);
@@ -160,11 +156,8 @@
         
     }
     DCETHREAD_CATCH_ALL(thread_exc){
-#warning return error
-//        printf("ERROR: CertServerRequest\nVerify that you have a kerberos ticket and that the service principal name of \"%s\" is correct\n",server_princ_name);
-        
-//        [self showErrorWithMessage:[NSString stringWithFormat:@"Verify that you have a kerberos ticket and that the service principal name of \"%s\" is correct.",server_princ_name]];
-        
+        *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":[NSString stringWithFormat:@"Verify that you have a kerberos ticket and that the service principal name of \"%s\" is correct.",server_princ_name]}];
+
         return ;
         
     }
@@ -178,11 +171,12 @@
         //        FILE *outfile=fopen(out_file_path,"w");
         
         if (pctbEncodedCert.cb==0) {
-//            fprintf(stderr,"Failed.  Check Failed Requests with request ID %i in the CA for the reason why\n",pdwRequestId);
+        
+            *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":[NSString stringWithFormat:@"Certificate request failed. Check Failed Requests with request ID %i in the Certificate Authority.",pdwRequestId]}];
             
-//            [self showErrorWithMessage:[NSString stringWithFormat:@"Certificate request failed. Check Failed Requests with request ID %i in the Certificate Authority.",pdwRequestId]];
             
-#warning return error
+                
+            
             return;
             
         }
