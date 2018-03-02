@@ -280,7 +280,7 @@
 		76784538203FE383000795AD /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		7678453A203FE3BB000795AD /* libykpiv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libykpiv.a; sourceTree = "<group>"; };
 		7678453C203FE3EA000795AD /* PCSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PCSC.framework; path = System/Library/Frameworks/PCSC.framework; sourceTree = SDKROOT; };
-		76881FD1203B4BA000A67877 /* SimpleCSRRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCSRRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76881FD1203B4BA000A67877 /* TCS Cert Request.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCS Cert Request.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76881FD3203B4BA000A67877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76881FD4203B4BA000A67877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		76881FD6203B4BA000A67877 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -463,7 +463,7 @@
 				760F6D322046596200C2F647 /* Utilities */,
 				7671091420353EC900EFD03E /* TCSCertificateRequest */,
 				7671091F20353EC900EFD03E /* TCSCertificateRequestTests */,
-				76881FD2203B4BA000A67877 /* SimpleCSRRequest */,
+				76881FD2203B4BA000A67877 /* TCS Cert Request GUI */,
 				7671091320353EC900EFD03E /* Products */,
 				76881FE4203B4BF300A67877 /* Frameworks */,
 			);
@@ -474,7 +474,7 @@
 			children = (
 				7671091220353EC900EFD03E /* TCSCertificateRequest.framework */,
 				7671091B20353EC900EFD03E /* TCSCertificateRequestFrameworkTests.xctest */,
-				76881FD1203B4BA000A67877 /* SimpleCSRRequest.app */,
+				76881FD1203B4BA000A67877 /* TCS Cert Request.app */,
 				760F6D3720465C7D00C2F647 /* libTCSCertificateRequestStaticLibrary.a */,
 			);
 			name = Products;
@@ -540,7 +540,7 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		76881FD2203B4BA000A67877 /* SimpleCSRRequest */ = {
+		76881FD2203B4BA000A67877 /* TCS Cert Request GUI */ = {
 			isa = PBXGroup;
 			children = (
 				76881FD3203B4BA000A67877 /* AppDelegate.h */,
@@ -551,7 +551,7 @@
 				76881FDC203B4BA000A67877 /* main.m */,
 				76881FDE203B4BA000A67877 /* SimpleCSRRequest.entitlements */,
 			);
-			path = SimpleCSRRequest;
+			path = "TCS Cert Request GUI";
 			sourceTree = "<group>";
 		};
 		76881FE4203B4BF300A67877 /* Frameworks */ = {
@@ -719,9 +719,9 @@
 			productReference = 7671091B20353EC900EFD03E /* TCSCertificateRequestFrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		76881FD0203B4BA000A67877 /* SimpleCSRRequest */ = {
+		76881FD0203B4BA000A67877 /* TCS Cert Request */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 76881FDF203B4BA000A67877 /* Build configuration list for PBXNativeTarget "SimpleCSRRequest" */;
+			buildConfigurationList = 76881FDF203B4BA000A67877 /* Build configuration list for PBXNativeTarget "TCS Cert Request" */;
 			buildPhases = (
 				76881FCD203B4BA000A67877 /* Sources */,
 				76881FCE203B4BA000A67877 /* Frameworks */,
@@ -733,9 +733,9 @@
 			dependencies = (
 				76881FE3203B4BE000A67877 /* PBXTargetDependency */,
 			);
-			name = SimpleCSRRequest;
+			name = "TCS Cert Request";
 			productName = SimpleCSRRequest;
-			productReference = 76881FD1203B4BA000A67877 /* SimpleCSRRequest.app */;
+			productReference = 76881FD1203B4BA000A67877 /* TCS Cert Request.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -788,7 +788,7 @@
 			projectRoot = "";
 			targets = (
 				7671091120353EC900EFD03E /* TCSCertificateRequest */,
-				76881FD0203B4BA000A67877 /* SimpleCSRRequest */,
+				76881FD0203B4BA000A67877 /* TCS Cert Request */,
 				7671091A20353EC900EFD03E /* TCSCertificateRequestFrameworkTests */,
 				760F6D1E2046544C00C2F647 /* ms-icp_cstub.o */,
 				760F6D3620465C7D00C2F647 /* TCSCertificateRequestStaticLibrary */,
@@ -1186,10 +1186,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UXP6YEHSPW;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = SimpleCSRRequest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TCS Cert Request GUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.SimpleCSRRequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.TCSCertRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1202,10 +1202,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UXP6YEHSPW;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = SimpleCSRRequest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TCS Cert Request GUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.SimpleCSRRequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.TCSCertRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1258,7 +1258,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		76881FDF203B4BA000A67877 /* Build configuration list for PBXNativeTarget "SimpleCSRRequest" */ = {
+		76881FDF203B4BA000A67877 /* Build configuration list for PBXNativeTarget "TCS Cert Request" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				76881FE0203B4BA000A67877 /* Debug */,
