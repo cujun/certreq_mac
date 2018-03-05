@@ -119,14 +119,21 @@ int main(int argc,  char * argv[]) {
         TCSADCertificateRequest *request=[[TCSADCertificateRequest alloc] initWithServerName:serverNameString certificateAuthorityName:certAuthNameString certificateTemplate:templateString verbose:NO error:nil];
         
         NSError *err;
-        [request submitRequestToActiveDirectoryWithCSR:csr error:&err];
-        if (err) {
+       NSData *cert= [request submitRequestToActiveDirectoryWithCSR:csr error:&err];
+        
+        
+        if (!cert) {
             fprintf(stderr, "%s\n", [[err.userInfo objectForKey:@"Error"] UTF8String]);
             
             return -1;
         }
 
-        
+        [TCSecurity installCertificateToKeychain:cert error:&err];
+        if (err!=nil) {
+            fprintf(stderr, "%s\n", [[err.userInfo objectForKey:@"Error"] UTF8String]);
+            
+            return -1;
+        }
         
         
     }

@@ -215,13 +215,20 @@ exit(-1);            \
         struct passwd *pw = getpwuid(getuid());
         assert(pw);
         
-        NSString *loginKeychain=[NSString stringWithFormat:@"%s/Library/Keychains/login.keychain",pw->pw_dir];
+        NSString *loginKeychain=[NSString stringWithFormat:@"%s/Library/Keychains/login.keychain-db",pw->pw_dir];
         if (![[NSFileManager defaultManager] fileExistsAtPath:loginKeychain]) {
-            fprintf(stderr,"Keychain does not exists at %s\n",[loginKeychain UTF8String]);
-            return;
+            fprintf(stderr,"Keychain does not exists at %s. Checking for legacy keychain.\n",[loginKeychain UTF8String]);
+            loginKeychain=[NSString stringWithFormat:@"%s/Library/Keychains/login.keychain",pw->pw_dir];
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:loginKeychain]) {
+                fprintf(stderr,"Keychain does not exists at %s\n",[loginKeychain UTF8String]);
+
+                return;
+            }
+                
         }
         keychain_path=malloc(PATH_MAX);
-        sprintf(keychain_path,"%s/Library/Keychains/login.keychain",pw->pw_dir);
+        sprintf(keychain_path,"%s",[loginKeychain UTF8String]);
     }
     if (verbose) fprintf(stderr,"Opening keychain %s\n",keychain_path);
     
@@ -246,8 +253,6 @@ exit(-1);            \
         
     }
     
-    
-
 }
 -(int)importNewP12sWithPassword:(NSString *)password{
     NSFileManager *fileManager = [NSFileManager defaultManager];
