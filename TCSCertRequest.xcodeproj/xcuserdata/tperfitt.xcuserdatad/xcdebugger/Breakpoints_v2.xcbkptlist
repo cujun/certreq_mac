@@ -25,30 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TCS Cert Request GUI/AppDelegate.m"
-            timestampString = "541711856.86875"
+            filePath = "tcscertrequest/main.m"
+            timestampString = "542177886.479396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-generateCSR:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TCS Cert Request GUI/TCSCertAppHelper.m"
-            timestampString = "541711856.869036"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "+installSignedCertificate:ToYubikeySlot:error:"
-            landmarkType = "7">
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "main"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TCSCertificateRequest/Security/TCSecurity.m"
-            timestampString = "541966609.947749"
+            timestampString = "542177886.4795229"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "+installCertificateToKeychain:error:"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "+installCertificate:keychain:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +57,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TCSCertificateRequest/Security/TCSecurity.m"
-            timestampString = "541966615.697064"
+            filePath = "TCSWinErrorCodes.m"
+            timestampString = "542177886.479606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "+installCertificateToKeychain:error:"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "+winErrorForCode:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TCSCertificateRequest/TCSADCertificateRequest.m"
+            timestampString = "542177886.479678"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-submitRequestToActiveDirectoryWithCSR:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

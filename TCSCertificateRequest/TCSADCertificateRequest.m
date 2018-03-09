@@ -13,6 +13,8 @@
 #import "TCSCStringUtilities.h"
 #import "CertificateSigningRequest.h"
 #import "TCSCertificateRequest.h"
+#import "TCSConstants.h"
+#import "TCSWinErrorCodes.h"
 #define CR_DISP_ISSUED 0x00000003
 #define CR_DISP_UNDER_SUBMISSION 0x00000005
 
@@ -71,7 +73,7 @@
                                     &status);
     
     if (status!=0) {
-        *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":@"Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket."}];
+        *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:@"Could not initiate connection. Please verify you can reach the KDC and that you have a kerberos ticket."}];
         
         return nil;
 
@@ -96,6 +98,9 @@
     
     if (status!=0) {
         printf("Cound not set authentication mechanism.  Error is %x\n",status);
+        
+        *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:[NSString stringWithFormat:@"Could not set authentication mechanism.  Error is %x\n",status]}];
+        
         return nil;
         
     }
@@ -144,19 +149,38 @@
     
     DCETHREAD_TRY {
         DWORD outstatus=CertServerRequest(binding_handle,dwFlags,(unsigned short *)pwszAuthority,&pdwRequestId,&pdwDisposition,&pctbAttribs,&pctbRequest,&pctbCert,&pctbEncodedCert,&pctbDispositionMessage);
-        NSLog(@"Request ID is %i",pdwRequestId);
         if (outstatus!=0) {
             
             printf("ERROR: CertServerRequest %i\n",outstatus);
+            
+            NSString *errorMessage=[TCSWinErrorCodes winErrorForCode:outstatus];
+            if (!errorMessage) errorMessage=@"Unknown Error";
+
+            if ([errorMessage isEqualToString:@"ERROR_INVALID_PARAMETER"]) {
+                *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:[NSString stringWithFormat:@"The server returned the following error message: %@ (%u). Please check the name of the Certificate Authority and the name of the template and try again.",errorMessage,(unsigned int)outstatus]}];
+
+                return nil;
+            }
+            *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:[NSString stringWithFormat:@"The server returned the following error message: %@ (%ui) ",errorMessage,(unsigned int)outstatus]}];
+
             return nil;
         }
         if (pdwDisposition==CR_DISP_ISSUED) fprintf(stderr,"Certificate issued.\n");
-        else if (pdwDisposition==CR_DISP_UNDER_SUBMISSION) printf("Certificate submitted\n");
-        else  fprintf(stderr,"Certificate request error\n");
-        
+        else if (pdwDisposition==CR_DISP_UNDER_SUBMISSION) {
+            *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:[NSString stringWithFormat:@"Certificate request submitted, but is waiting approval with Request ID %i",pdwRequestId]}];
+            return nil;
+
+            
+        }
+        else  {
+            fprintf(stderr,"Certificate request error\n");
+            *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:@"Certificate request error. Please check the name of the template (and other settings) and try again."}];
+
+            return nil;
+        }
     }
     DCETHREAD_CATCH_ALL(thread_exc){
-        *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":[NSString stringWithFormat:@"Verify that you have a kerberos ticket and that the service principal name of \"%s\" is correct.",server_princ_name]}];
+        *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:[NSString stringWithFormat:@"Verify that you have a kerberos ticket and that the service principal name of \"%s\" is correct.",server_princ_name]}];
 
         return nil;
         
@@ -168,15 +192,10 @@
     free (server_princ_name);
     
     if (pdwRequestId>0) {
-        //        FILE *outfile=fopen(out_file_path,"w");
-        
+       
         if (pctbEncodedCert.cb==0) {
         
-            *error=[NSError errorWithDomain:@"TCS" code:-1 userInfo:@{@"Error":[NSString stringWithFormat:@"Certificate request failed. Check Failed Requests with request ID %i in the Certificate Authority.",pdwRequestId]}];
-            
-            
-                
-            
+            *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:[NSString stringWithFormat:@"Certificate request failed. Check Failed Requests with request ID %i in the Certificate Authority.",pdwRequestId]}];
             return nil;
             
         }
@@ -188,8 +207,11 @@
         cert = SecCertificateCreateWithData(NULL, (CFDataRef) cert_data);
         
         self.certificate=(NSData *)CFBridgingRelease(cert_data);
+        
         return CFBridgingRelease(cert_data);
     }
+    *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:@"Request ID was zero"}];
+
     return nil;
 }
 

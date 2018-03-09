@@ -79,8 +79,9 @@
     return csr;
     
 }
-+(void)installSignedCertificate:(NSData *)inCert ToYubikeySlot:(NSString *)inSlot error:(NSError **)error{
++(int)installSignedCertificate:(NSData *)inCert ToYubikeySlot:(NSString *)inSlot error:(NSError **)error{
     TCSYubiManager *ym=[TCSYubiManager sharedManager];
-    [ym installCertificate:inCert intoSlot:inSlot];
+    if([ym installCertificate:inCert intoSlot:inSlot]==YES) return 0;
+    return -1;
 }
 @end

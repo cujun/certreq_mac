@@ -9,9 +9,7 @@
 #import "AppDelegate.h"
 #import "TCSCertificateRequest.h"
 #import "TCSCertAppHelper.h"
-#define TCSDEVICEKEYCHAIN 0
-#define TCSDEVICEYUBIKEY 1
-
+#import "TCSConstants.h"
 @interface AppDelegate ()
 @property (nonatomic, strong) NSString *certAuthorityDNSName;
 @property (nonatomic, strong) NSString *certAuthorityName;
@@ -66,12 +64,14 @@
 
     
     if (self.certificateDeviceSelected==TCSDEVICEYUBIKEY) {
+        
         [TCSCertAppHelper installSignedCertificate:returnedCert ToYubikeySlot:self.yubikeySlot error:nil];
-        [TCSecurity installCertificateToKeychain:returnedCert error:nil];
+        [TCSecurity installCertificate:returnedCert keychain:nil error:nil];
 
+        
     }
     else {
-        [TCSecurity installCertificateToKeychain:returnedCert error:nil];
+        [TCSecurity installCertificate:returnedCert keychain:nil error:nil];
 
     }
     
@@ -82,7 +82,7 @@
         [alert addButtonWithTitle:@"OK"];
         
         [alert setMessageText:@"Certificate Generation Error"];
-        [alert setInformativeText:[err.userInfo objectForKey:@"Error"]];
+        [alert setInformativeText:[err.userInfo objectForKey:TCSERRORMESSAGEKEY]];
         [alert runModal];
         
 

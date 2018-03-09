@@ -10,6 +10,8 @@
 #import "TCSCertAppHelper.h"
 #import "dce/dcethread.h"
 #import "ms-icp.h"
+#import "TCSConstants.h"
+
 
 #import <Security/Security.h>
 #import <pwd.h>
@@ -123,14 +125,14 @@ int main(int argc,  char * argv[]) {
         
         
         if (!cert) {
-            fprintf(stderr, "%s\n", [[err.userInfo objectForKey:@"Error"] UTF8String]);
+            fprintf(stderr, "%s\n", [[err.userInfo objectForKey:TCSERRORMESSAGEKEY] UTF8String]);
             
             return -1;
         }
-
-        [TCSecurity installCertificateToKeychain:cert error:&err];
+        NSString *kcp=keychain_path?[NSString stringWithUTF8String:keychain_path]:nil;
+        [TCSecurity installCertificate:cert keychain:kcp error:&err];
         if (err!=nil) {
-            fprintf(stderr, "%s\n", [[err.userInfo objectForKey:@"Error"] UTF8String]);
+            fprintf(stderr, "%s\n", [[err.userInfo objectForKey:TCSERRORMESSAGEKEY] UTF8String]);
             
             return -1;
         }
