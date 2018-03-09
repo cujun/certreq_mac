@@ -207,8 +207,8 @@
         cert = SecCertificateCreateWithData(NULL, (CFDataRef) cert_data);
         
         self.certificate=(NSData *)CFBridgingRelease(cert_data);
+        return self.certificate;
         
-        return CFBridgingRelease(cert_data);
     }
     *error=[NSError errorWithDomain:TCSERRORDOMAIN code:TCSERRORCRITICALCODE userInfo:@{TCSERRORMESSAGEKEY:@"Request ID was zero"}];
 

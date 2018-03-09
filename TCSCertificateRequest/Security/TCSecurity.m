@@ -386,8 +386,11 @@ exit(-1);            \
        (id)kSecAttrKeySizeInBits:         @2048,
        (id)kSecPrivateKeyAttrs:
            @{ (id)kSecAttrIsPermanent:    @YES,
-              (id)kSecAttrApplicationTag: tag
+              (id)kSecAttrApplicationTag: tag 
               },
+       (id)kSecPublicKeyAttrs:
+           @{(id)kSecAttrIsPermanent:    @YES,
+             }
        };
 
     CFErrorRef error = NULL;
