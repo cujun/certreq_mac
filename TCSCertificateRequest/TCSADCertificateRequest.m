@@ -188,7 +188,8 @@
         cert = SecCertificateCreateWithData(NULL, (CFDataRef) cert_data);
         
         self.certificate=(NSData *)CFBridgingRelease(cert_data);
-        return CFBridgingRelease(cert_data);
+        return self.certificate;
+        
     }
     return nil;
 }
