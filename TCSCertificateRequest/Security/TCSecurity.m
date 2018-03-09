@@ -13,7 +13,7 @@
 #import "ASN1Utilities.h"
 #include <CommonCrypto/CommonDigest.h>
 #import <pwd.h>
-
+#import "TCSConstants.h"
 #define OID_SIGNED_DATA @"1.2.840.113549.1.7.2"
 
 
@@ -206,29 +206,37 @@ exit(-1);            \
     return 0;
 }
 
-+(void)installCertificateToKeychain:(NSData *)inCert error:(NSError **)returnErr{
++(int)installCertificate:(NSData *)inCert keychain:(NSString *)keychainPath error:(NSError **)returnErr{
+    
     SecCertificateRef cert = SecCertificateCreateWithData(NULL, (CFDataRef) inCert);
     SecKeychainRef keychain_ref;
     int verbose=1;
     char *keychain_path=NULL;
+    NSString *keychain;
+
+    keychain=keychainPath;
     if (!keychain_path) {
         struct passwd *pw = getpwuid(getuid());
         assert(pw);
-        
-        NSString *loginKeychain=[NSString stringWithFormat:@"%s/Library/Keychains/login.keychain-db",pw->pw_dir];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:loginKeychain]) {
-            fprintf(stderr,"Keychain does not exists at %s. Checking for legacy keychain.\n",[loginKeychain UTF8String]);
-            loginKeychain=[NSString stringWithFormat:@"%s/Library/Keychains/login.keychain",pw->pw_dir];
-            
-            if (![[NSFileManager defaultManager] fileExistsAtPath:loginKeychain]) {
-                fprintf(stderr,"Keychain does not exists at %s\n",[loginKeychain UTF8String]);
+        if (!keychainPath) {
+            keychain=[NSString stringWithFormat:@"%s/Library/Keychains/login.keychain-db",pw->pw_dir];
+            if (![[NSFileManager defaultManager] fileExistsAtPath:keychain]) {
+                fprintf(stderr,"Keychain does not exists at %s. Checking for legacy keychain.\n",[keychain UTF8String]);
+                keychain=[NSString stringWithFormat:@"%s/Library/Keychains/login.keychain",pw->pw_dir];
+                
+                if (![[NSFileManager defaultManager] fileExistsAtPath:keychain]) {
+                    fprintf(stderr,"Keychain does not exists at %s\n",[keychain UTF8String]);
 
-                return;
+                    *returnErr=[NSError errorWithDomain:@"TCSError" code:100 userInfo:@{@"ErrorMessage":@"Certificate not saved in keychain"}];
+
+                    return -1;
+                }
             }
                 
         }
+      
         keychain_path=malloc(PATH_MAX);
-        sprintf(keychain_path,"%s",[loginKeychain UTF8String]);
+        sprintf(keychain_path,"%s",[keychain UTF8String]);
     }
     if (verbose) fprintf(stderr,"Opening keychain %s\n",keychain_path);
     
@@ -250,9 +258,10 @@ exit(-1);            \
     
     if (status != errSecSuccess) {
         *returnErr=[NSError errorWithDomain:@"TCSError" code:100 userInfo:@{@"ErrorMessage":@"Certificate not saved in keychain"}];
+        return -1;
         
     }
-    
+    return 0;
 }
 -(int)importNewP12sWithPassword:(NSString *)password{
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -371,13 +380,17 @@ exit(-1);            \
 }
 +(SecKeyRef)generatePrivateKeyWithIdentifer:(NSString *)inIdentifer{
     NSData* tag = [inIdentifer dataUsingEncoding:NSUTF8StringEncoding];
+    if (tag==nil) return nil;
     NSDictionary* attributes =
     @{ (id)kSecAttrKeyType:               (id)kSecAttrKeyTypeRSA,
        (id)kSecAttrKeySizeInBits:         @2048,
        (id)kSecPrivateKeyAttrs:
            @{ (id)kSecAttrIsPermanent:    @YES,
-              (id)kSecAttrApplicationTag: tag
+              (id)kSecAttrApplicationTag: tag 
               },
+       (id)kSecPublicKeyAttrs:
+           @{(id)kSecAttrIsPermanent:    @YES,
+             }
        };
 
     CFErrorRef error = NULL;

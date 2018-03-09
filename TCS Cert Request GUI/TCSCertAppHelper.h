@@ -11,5 +11,5 @@
 @interface TCSCertAppHelper : NSObject
 +(NSData *)generateCSRFromYubikeyWithManagementKey:(NSString *)managementKey inSlot:(NSString *)yubiKeySlot commonName:(NSString *)commonName error:(NSError **)error;
 +(NSData *)generateCSRFromKeychainWithCommonName:(NSString *)commonName error:(NSError **)error;
-+(void)installSignedCertificate:(NSData *)inCert ToYubikeySlot:(NSString *)inSlot error:(NSError **)error;
++(int)installSignedCertificate:(NSData *)inCert ToYubikeySlot:(NSString *)inSlot error:(NSError **)error;
 @end

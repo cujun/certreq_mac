@@ -109,6 +109,8 @@
 		762C50B92040D7EA006CC25E /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 762C50B82040D7EA006CC25E /* internal.h */; };
 		762C50BC2041EBE6006CC25E /* TCSYubiManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 762C50BA2041EBE6006CC25E /* TCSYubiManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		762C50BD2041EBE6006CC25E /* TCSYubiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 762C50BB2041EBE6006CC25E /* TCSYubiManager.m */; };
+		7636B979204F8DDA00A7C32D /* tcscertrequest in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FABD9D20490698001136D4 /* tcscertrequest */; };
+		765CF7062050F5BB007ACA1F /* TCSWinErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 765CF7032050F15D007ACA1F /* TCSWinErrorCodes.m */; };
 		7671091C20353EC900EFD03E /* TCSCertificateRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7671091220353EC900EFD03E /* TCSCertificateRequest.framework */; };
 		7671092120353ECA00EFD03E /* TCSCertificateRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7671092020353ECA00EFD03E /* TCSCertificateRequestTests.m */; };
 		7671092320353ECA00EFD03E /* TCSCertificateRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 7671091520353EC900EFD03E /* TCSCertificateRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -318,6 +320,9 @@
 		762C50B82040D7EA006CC25E /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		762C50BA2041EBE6006CC25E /* TCSYubiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSYubiManager.h; sourceTree = "<group>"; };
 		762C50BB2041EBE6006CC25E /* TCSYubiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSYubiManager.m; sourceTree = "<group>"; };
+		765CF7012050DFE2007ACA1F /* TCSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSConstants.h; sourceTree = "<group>"; };
+		765CF7022050F15D007ACA1F /* TCSWinErrorCodes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSWinErrorCodes.h; sourceTree = "<group>"; };
+		765CF7032050F15D007ACA1F /* TCSWinErrorCodes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCSWinErrorCodes.m; sourceTree = "<group>"; };
 		7671091220353EC900EFD03E /* TCSCertificateRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TCSCertificateRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7671091520353EC900EFD03E /* TCSCertificateRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCSCertificateRequest.h; sourceTree = "<group>"; };
 		7671091620353EC900EFD03E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -403,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7636B979204F8DDA00A7C32D /* tcscertrequest in Frameworks */,
 				76FABDAE20490EAF001136D4 /* ms-icp_cstub.o in Frameworks */,
 				76FABDA820490927001136D4 /* libTCSCertificateRequestStaticLibrary.a in Frameworks */,
 				76FABDA92049094A001136D4 /* libcrypto.a in Frameworks */,
@@ -517,6 +523,7 @@
 		760F6D262046551100C2F647 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				765CF7012050DFE2007ACA1F /* TCSConstants.h */,
 				760F6D242046550B00C2F647 /* ms-icp_cstub.o */,
 				760F6D272046551700C2F647 /* ms-icp.idl */,
 			);
@@ -535,6 +542,8 @@
 		7671090820353EC900EFD03E = {
 			isa = PBXGroup;
 			children = (
+				765CF7022050F15D007ACA1F /* TCSWinErrorCodes.h */,
+				765CF7032050F15D007ACA1F /* TCSWinErrorCodes.m */,
 				760F6D262046551100C2F647 /* Support Files */,
 				760F6C942046528F00C2F647 /* headers */,
 				76881FE9203B56C100A67877 /* README.md */,
@@ -990,6 +999,7 @@
 				7671094320353EE800EFD03E /* ASN1Composite.m in Sources */,
 				760F6C932046515A00C2F647 /* TCSADCertificateRequest.m in Sources */,
 				760F6D312046589300C2F647 /* TCSCStringUtilities.c in Sources */,
+				765CF7062050F5BB007ACA1F /* TCSWinErrorCodes.m in Sources */,
 				762C50BD2041EBE6006CC25E /* TCSYubiManager.m in Sources */,
 				7671094420353EE800EFD03E /* DER.m in Sources */,
 				7671095A2035418E00EFD03E /* NSString+QP.m in Sources */,
@@ -1181,7 +1191,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/headers\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1234,7 +1244,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/headers\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1268,6 +1278,7 @@
 					"$(PROJECT_DIR)",
 				);
 				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.TCSCertificateRequest;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 			};
@@ -1299,6 +1310,7 @@
 					"$(PROJECT_DIR)",
 				);
 				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.TCSCertificateRequest;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 			};
@@ -1334,15 +1346,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/TCS Cert Request GUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.TCSCertRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1350,15 +1365,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = UXP6YEHSPW;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/TCS Cert Request GUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twocanoes.TCSCertRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -1375,6 +1393,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1392,6 +1411,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
